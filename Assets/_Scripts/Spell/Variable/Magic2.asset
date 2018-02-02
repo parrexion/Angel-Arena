@@ -8,7 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1705540adec166542bd318a047c3f602, type: 3}
-  m_Name: PlayerLevel
+  m_Script: {fileID: 11500000, guid: 87e688c612e85a045992f1f46ca32f68, type: 3}
+  m_Name: Magic2
   m_EditorClassIdentifier: 
-  value: 9
+  reference: {fileID: 11400000, guid: 8a88e3cd712352d429005d6d4d5a707f, type: 2}
+  level: 1

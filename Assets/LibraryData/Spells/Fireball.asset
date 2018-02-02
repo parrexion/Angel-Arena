@@ -9,11 +9,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b6512c0cf6b2674cbe51e6dc373d8fb, type: 3}
-  m_Name: Shield
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  useable: 0
-  icon: {fileID: 21300000, guid: fa3a21b13407a6e4d9e3e210004d1266, type: 3}
+  spellName: Fireball
+  icon: {fileID: 21300000, guid: 6e8fd265635fade4089d4d88a6cbefd4, type: 3}
+  description: Fires a fireball which deals <dmg> damage to a single enemy.
+  useable: 1
   ultimate: 0
-  damage: 0
-  cooldown: 0
-  manaCost: 0
+  damage: 10
+  heal: 0
+  buffValue: 0
+  cooldown: 2
+  manaCost: 5
+  s_damage: 10
+  s_heal: 0
+  s_buffValue: 0
+  s_cooldown: 0
+  s_manaCost: 0
