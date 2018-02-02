@@ -8,8 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87e688c612e85a045992f1f46ca32f68, type: 3}
-  m_Name: Magic4
+  m_Script: {fileID: 11500000, guid: a5344d937ae570243a52acc204345b58, type: 3}
+  m_Name: SelectedCharacter
   m_EditorClassIdentifier: 
-  reference: {fileID: 11400000, guid: 429f600de472b784ea9ba096601b7321, type: 2}
-  level: 2
+  reference: {fileID: 0}

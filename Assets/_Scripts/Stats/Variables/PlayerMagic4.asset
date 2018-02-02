@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87e688c612e85a045992f1f46ca32f68, type: 3}
-  m_Name: Magic3
+  m_Name: PlayerMagic4
   m_EditorClassIdentifier: 
-  reference: {fileID: 11400000, guid: a22d0a046e9cea04cbd8a03189a9ef4e, type: 2}
-  level: 2
+  reference: {fileID: 0}
+  level: 0

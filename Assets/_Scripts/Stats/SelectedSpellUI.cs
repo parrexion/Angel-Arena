@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class SelectedSpellUI : MonoBehaviour {
 
-	//Selected item
+	[Header("Selected spell")]
 	public SpellReference selectedSpell;
 	private Spell currentSpell;
 	public Text nameText;
@@ -17,17 +17,19 @@ public class SelectedSpellUI : MonoBehaviour {
 	public Text levelText;
 	public Text descriptionText;
 
+	[Header("Player level")]
+	public Text playerLevelText;
 	public IntVariable playerLevel;
+	public Button levelupButton;
+
+	[Header("Ref values")]
 	public BoolVariable levelupMode;
 	public UnityEvent levelupClickedEvent;
 
 
-	void Start () {
-		
-	}
-
 	void OnEnable() {
 		selectedSpell.reference = null;
+		levelupButton.interactable = true; //TODO - levelup exp req.
 	}
 
 	void Update () {
@@ -39,6 +41,8 @@ public class SelectedSpellUI : MonoBehaviour {
 	/// Updates the information text of the currently selected item.
 	/// </summary>
 	void UpdateValues(){
+
+		playerLevelText.text = "Level: " + playerLevel.value;
 
 		if (selectedSpell.reference != null) {
 			currentSpell = selectedSpell.reference;
@@ -63,7 +67,9 @@ public class SelectedSpellUI : MonoBehaviour {
 	/// Toggles the levelup mode.
 	/// </summary>
 	public void ToggleLeveupMode() {
-		levelupMode.value = !levelupMode.value;
+		if (levelupMode.value)
+			return;
+		levelupMode.value = true;
 		levelupClickedEvent.Invoke();
 	}
 }

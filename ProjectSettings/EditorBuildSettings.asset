@@ -4,4 +4,31 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/MainMenu.unity
+    guid: d56f1838ce2b9d94580c557fc1bb0798
+  - enabled: 1
+    path: Assets/_Scenes/CharacterSelect.unity
+    guid: d4605875fde5e2445a5803f9535744fa
+  - enabled: 1
+    path: Assets/_Scenes/Town.unity
+    guid: ca83cbcd43b64f543806a5c367248099
+  - enabled: 1
+    path: Assets/_Scenes/Levelup.unity
+    guid: fda832e40819d33489b19090fb1f03cd
+  - enabled: 1
+    path: Assets/_Scenes/Inventory.unity
+    guid: a4d0c31360936e84a8e88f5356d1e4aa
+  - enabled: 1
+    path: Assets/_Scenes/Shop.unity
+    guid: 1bfe19aa3cb0e6d42b333c15417261a8
+  - enabled: 1
+    path: Assets/_Scenes/Forge.unity
+    guid: c5cdf367eef8caa488ba5c6f6d4e3d4a
+  - enabled: 1
+    path: Assets/_Scenes/Map.unity
+    guid: b765add66297bc54e8a3170fe02e4a10
+  - enabled: 1
+    path: Assets/_Scenes/Battle.unity
+    guid: e46db3fbe1f070743abc4c8a55b80da7
