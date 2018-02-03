@@ -40,7 +40,7 @@ public class SlotHandler : MonoBehaviour, IDropHandler {
 	public void OnDrop(PointerEventData eventData) {
 		if (DragHandler.itemBeingDragged != null) {
 			SlotID start_id = DragHandler.itemBeingDragged.GetComponent<DragHandler>().start_id;
-			if (slot.slotID.type == SlotID.SlotType.DESTROY)
+			if (slot.slotID.type == ItemEntry.ItemType.DESTROY)
 				selectedItem.reference = null;
 
 			invContainer.Swap(start_id,slot.slotID);

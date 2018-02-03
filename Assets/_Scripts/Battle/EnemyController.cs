@@ -77,6 +77,18 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Returns the index of the first alive enemy.
+	/// </summary>
+	/// <returns></returns>
+	public int FindFirstEnemy(){
+		for (int i = 0; i < enemyHealth.Length; i++) {
+			if (enemyHealth[i] > 0)
+				return i;
+		}
+		return -1;
+	}
+
 	public void TakeDamage(int enemyIndex, int damage) {
 		int realDamage = Mathf.Max(0, damage - battleEntry.enemy.defense);
 		enemyHealth[enemyIndex] -= realDamage;

@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class BaseProbabiltyTuple {
 	public int probability;
-	public ItemEquip.ItemType baseType;
+	public ItemEntry.ItemType baseType;
 }
 
 [System.Serializable]
@@ -52,7 +52,7 @@ public class ItemGenerator : MonoBehaviour {
 
 
 	public void Generate() {
-		ItemEquip testItem = (ItemEquip)selectedItem.reference;
+		ItemEntry testItem = selectedItem.reference;
 		if (testItem == null)
 			return;
 

@@ -21,11 +21,11 @@ public class InventoryUI : MonoBehaviour {
 		//Slot initialization
 		equipSlots = equipItemsParent.GetComponentsInChildren<InventorySlot>();
 		for (int i = 0; i < equipSlots.Length; i++) {
-			equipSlots[i].SetID(SlotID.SlotType.EQUIP,-(i+1));
+			equipSlots[i].SetID(ItemEntry.ItemType.ARMOR,-(i+1));
 		}
 		bagSlots = bagItemsParent.GetComponentsInChildren<InventorySlot>();
 		for (int i = 0; i < bagSlots.Length; i++) {
-			bagSlots[i].SetID(SlotID.SlotType.EQUIP,i);
+			bagSlots[i].SetID(ItemEntry.ItemType.WEAPON,i);
 		}
 
 		Debug.Log("Initiated the slot ids");

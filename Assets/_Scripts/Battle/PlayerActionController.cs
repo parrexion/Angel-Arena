@@ -19,6 +19,12 @@ public class PlayerActionController : MonoBehaviour {
 	public Transform damageNumber;
 
 	public AttackType currentAttackType = AttackType.NONE;
+	
+	[Header("Familiar")]
+	public Transform familiarTransform;
+	public IntVariable familiarHealth;
+	public IntVariable familiarMaxHealth;
+	public IntVariable familiarDamage;
 
 
 	// Use this for initialization
@@ -27,41 +33,75 @@ public class PlayerActionController : MonoBehaviour {
 		statsController.currentMana.value = statsController.maxMana.value;
 		currentAttackType = AttackType.NONE;
 		selectCanvas.enabled = false;
+
+		familiarHealth.value = 0;
+		familiarTransform.gameObject.SetActive(false);
 	}
 
+	/// <summary>
+	/// Actions done before the start of each player turn.
+	/// </summary>
 	public void PreTurn() {
 		statsController.currentHP.value += statsController.healthReg.value;
 		statsController.currentMana.value += statsController.manaReg.value;
 	}
 
+	/// <summary>
+	/// Actions done whenever it's the player's action.
+	/// </summary>
 	public void StartTurn() {
 		actionCanvas.enabled = true;
 	}
 
+	/// <summary>
+	/// Shows the attack selection for basic attacks.
+	/// </summary>
 	public void BasicAttackSelect() {
 		selectCanvas.enabled = true;
 		currentAttackType = AttackType.BASIC;
 	}
 
+	/// <summary>
+	/// Shows the attack selection for magic attacks if the spell needs that.
+	/// </summary>
+	/// <param name="magicType"></param>
 	public void MagicAttackSelect(int magicType) {
-		selectCanvas.enabled = true;
 		currentAttackType = (AttackType)magicType;
-		Debug.Log("Magictype: " + currentAttackType.ToString());
+		Spell.SpellType type = magicController.spells[magicType-1].reference.spellType;
+
+		Debug.Log("Magicindex: " + (magicType-1) + ", Type:  " + type.ToString());
+
+		if (type == Spell.SpellType.SINGLE) {
+			selectCanvas.enabled = true;
+		}
+		else {
+			Attack(-1);
+		}
 	}
 
+	/// <summary>
+	/// Called when the attack should be made.
+	/// </summary>
+	/// <param name="index"></param>
 	public void Attack(int index) {
 		if (currentAttackType == AttackType.BASIC) {
-			BasicAttack(index);
+			StartCoroutine(BasicAttack(index));
 		}
 		else if (currentAttackType > 0) {
 			MagicAttack(index);
 		}
 		else {
-			Debug.Log("FAIL!!!");
+			Debug.LogError("FAIL!!!");
 		}
 	}
 
-	void BasicAttack(int index) {
+	/// <summary>
+	/// Makes a basic attack and adds attack modifiers.
+	/// The familiar follows up with an attack if possible.
+	/// </summary>
+	/// <param name="index"></param>
+	/// <returns></returns>
+	IEnumerator BasicAttack(int index) {
 		selectCanvas.enabled = false;
 		Debug.Log("Dealt damage to the enemy!");
 		int damage = statsController.damage.value;
@@ -71,11 +111,33 @@ public class PlayerActionController : MonoBehaviour {
 		}
 
 		enemies.TakeDamage(index, damage);
+
+		int famIndex = FamiliarAttack();
+		if (famIndex >= 0) {
+			yield return new WaitForSeconds(0.5f);
+			enemies.TakeDamage(famIndex, familiarDamage.value);
+		}
+
 		currentBattleState.value++;
 		nextPhaseEvent.Invoke();
 		currentAttackType = AttackType.NONE;
+		yield break;
 	}
 
+	/// <summary>
+	/// Returns the enemy index to attack or -1 if the familiar can't attack.
+	/// </summary>
+	/// <returns></returns>
+	int FamiliarAttack() {
+		if (familiarHealth.value <= 0)
+			return -1;
+		return enemies.FindFirstEnemy();
+	}
+
+	/// <summary>
+	/// Makes a magic attack and then returns the turn back to the player again.
+	/// </summary>
+	/// <param name="index"></param>
 	void MagicAttack(int index) {
 		selectCanvas.enabled = false;
 		magicController.UseSpell(index, ((int)currentAttackType)-1);
@@ -83,7 +145,20 @@ public class PlayerActionController : MonoBehaviour {
 		currentAttackType = AttackType.NONE;
 	}
 
+	/// <summary>
+	/// Deals the damage to the player after subtracting defenses.
+	/// If there is a familiar in play then the familiar takes the damage instead.
+	/// </summary>
+	/// <param name="damage"></param>
 	public void TakeDamage(int damage) {
+		if (familiarHealth.value > 0) {
+			familiarHealth.value -= damage;
+			Debug.Log("Enemy hurt familiar for " + damage + " damage.");
+			if (familiarHealth.value <= 0){
+				familiarTransform.gameObject.SetActive(false);
+			}
+			return;
+		}
 		int realDamage = Mathf.Max(0, damage - statsController.armor.value);
 		statsController.currentHP.value -= realDamage;
 		Debug.Log("Enemy hurt player for " + realDamage + " damage.");
@@ -91,20 +166,42 @@ public class PlayerActionController : MonoBehaviour {
 		dmg.GetComponent<DamageNumberDisplay>().damage = realDamage;
 	}
 
+	/// <summary>
+	/// Heals the player the specified amount.
+	/// </summary>
+	/// <param name="heal"></param>
 	public void HealDamage(int heal) {
 		heal = Mathf.Min(heal, statsController.maxHP.value - statsController.currentHP.value);
 		statsController.currentHP.value += heal;
 		Debug.Log("Player healed " + heal + " health.");
 	}
 
+	/// <summary>
+	/// Makes the player lose the specified amount of mana.
+	/// </summary>
+	/// <param name="amount"></param>
 	public void LoseMana(int amount) {
 		statsController.currentMana.value -= amount;
 		Debug.Log("Player used " + amount + " mana.");
 	}
 
+	/// <summary>
+	/// Gives the player back the specified amount of mana.
+	/// </summary>
+	/// <param name="heal"></param>
 	public void HealMana(int heal) {
 		heal = Mathf.Min(heal, statsController.maxMana.value - statsController.currentMana.value);
 		statsController.currentMana.value += heal;
 		Debug.Log("Player healed " + heal + " mana.");
+	}
+
+	/// <summary>
+	/// Creates a familiar with the amount of health specified in the heal field of the spell.
+	/// </summary>
+	/// <param name="health"></param>
+	public void CreateFamiliar(int health) {
+		familiarHealth.value = health;
+		familiarMaxHealth.value = familiarHealth.value;
+		familiarTransform.gameObject.SetActive(true);
 	}
 }

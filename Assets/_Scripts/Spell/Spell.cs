@@ -6,6 +6,7 @@ using UnityEngine;
 public class Spell : ScriptableObject {
 
 	public enum DetailMode { SIMPLE, LEVELUP, DESC, FULL }
+	public enum SpellType { SINGLE, HEAL, FAMILIAR, AREA, PASSIVE, DOT }
 
 	[Header("Basic values")]
 	public string spellName;
@@ -15,6 +16,8 @@ public class Spell : ScriptableObject {
 	[Header("Magic type")]
 	public bool useable;
 	public bool ultimate;
+	[SerializeField]
+	public SpellType spellType;
 
 	[Header("Base values")]
 	public int damage;

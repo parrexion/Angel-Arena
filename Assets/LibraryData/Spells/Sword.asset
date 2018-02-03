@@ -16,6 +16,7 @@ MonoBehaviour:
   description: Deals <dmg> damage to a single enemy.
   useable: 1
   ultimate: 1
+  spellType: 0
   damage: 10
   heal: 0
   buffValue: 0

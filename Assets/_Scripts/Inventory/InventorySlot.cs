@@ -4,10 +4,9 @@ using UnityEngine.UI;
 /// <summary>
 /// ID used to identify which inventory the inventory slot belongs to.
 /// </summary>
+[System.Serializable]
 public class SlotID {
-	public enum SlotType { KANJI, EQUIP, DESTROY }
-
-	public SlotType type;
+	public ItemEntry.ItemType type;
 	public int id;
 }
 
@@ -27,7 +26,7 @@ public class InventorySlot : MonoBehaviour {
 	/// </summary>
 	/// <param name="type"></param>
 	/// <param name="id"></param>
-	public void SetID(SlotID.SlotType type, int id) {
+	public void SetID(ItemEntry.ItemType type, int id) {
 		slotID = new SlotID();
 		slotID.type = type;
 		slotID.id = id;

@@ -53,7 +53,7 @@ public class PlayerStatsController : MonoBehaviour {
 			if (equippedItems.values[i] == null)
 				continue;
 
-			ItemEquip item = (ItemEquip)equippedItems.values[i];
+			ItemEntry item = equippedItems.values[i];
 			maxHP.value += item.healthMod;
 			maxMana.value += item.manaMod;
 			currentHP.value = maxHP.value;

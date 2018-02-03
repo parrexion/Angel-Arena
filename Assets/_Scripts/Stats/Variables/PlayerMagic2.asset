@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e688c612e85a045992f1f46ca32f68, type: 3}
   m_Name: PlayerMagic2
   m_EditorClassIdentifier: 
-  reference: {fileID: 0}
-  level: 0
+  reference: {fileID: 11400000, guid: 78b15b0743e9e6d4d98c411c9bb59ce0, type: 2}
+  level: 1

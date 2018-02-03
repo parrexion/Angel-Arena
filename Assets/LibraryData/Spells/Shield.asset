@@ -16,6 +16,7 @@ MonoBehaviour:
   description: Passively increases the characters armor by <buff>.
   useable: 0
   ultimate: 0
+  spellType: 4
   damage: 0
   heal: 0
   buffValue: 1

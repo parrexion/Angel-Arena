@@ -21,7 +21,7 @@ public class SelectedItemUI : MonoBehaviour {
 
 	//Selected item
 	public ItemEntryReference selectedItem;
-	private ItemEquip currentItem;
+	private ItemEntry currentItem;
 	public Text itemName;
 	private Text[] changes;
 	public Image itemIcon;
@@ -69,7 +69,7 @@ public class SelectedItemUI : MonoBehaviour {
 		values[2].text = playerDefense.value.ToString();
 
 		if (selectedItem.reference != null) {
-			currentItem = (ItemEquip)selectedItem.reference;
+			currentItem = selectedItem.reference;
 			itemName.text = currentItem.entryName;
 			itemIcon.sprite = currentItem.icon;
 			itemIcon.color = currentItem.tintColor;

@@ -17,6 +17,6 @@ MonoBehaviour:
   description: Green test character
   spells:
   - {fileID: 11400000, guid: 465f80deb7d49904ea391201b6cd9f83, type: 2}
-  - {fileID: 11400000, guid: a22d0a046e9cea04cbd8a03189a9ef4e, type: 2}
+  - {fileID: 11400000, guid: 78b15b0743e9e6d4d98c411c9bb59ce0, type: 2}
   - {fileID: 11400000, guid: 8a88e3cd712352d429005d6d4d5a707f, type: 2}
   - {fileID: 11400000, guid: 429f600de472b784ea9ba096601b7321, type: 2}

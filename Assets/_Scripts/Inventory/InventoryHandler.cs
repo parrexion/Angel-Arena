@@ -60,9 +60,9 @@ public class InventoryHandler : MonoBehaviour {
 		int posA = slotA.id;
 		int posB = slotB.id;
 
-		if (slotA.type == SlotID.SlotType.DESTROY)
+		if (slotA.type == ItemEntry.ItemType.DESTROY)
 			Remove(posB);
-		else if (slotB.type == SlotID.SlotType.DESTROY)
+		else if (slotB.type == ItemEntry.ItemType.DESTROY)
 			Remove(posA);
 
 		// Debug.Log(string.Format("Swappy: {0} <> {1}", posA, posB));

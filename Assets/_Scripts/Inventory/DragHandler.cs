@@ -61,7 +61,7 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 	#region IPointerDownHandler implementation
 
 	public void OnPointerDown(PointerEventData eventData) {
-		if (slot.slotID.type != SlotID.SlotType.DESTROY)
+		if (slot.slotID.type != ItemEntry.ItemType.DESTROY)
 			selectedItem.reference = slot.item;
 	}
 
