@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Spell : ScriptableObject {
 
-	public enum DetailMode { SIMPLE, LEVELUP, FULL }
+	public enum DetailMode { SIMPLE, LEVELUP, DESC, FULL }
 
 	[Header("Basic values")]
 	public string spellName;
@@ -43,6 +43,9 @@ public class Spell : ScriptableObject {
 				break;
 			case DetailMode.LEVELUP:
 				fullDesc = SetupDescriptionLevelup(fullDesc, level);
+				break;
+			case DetailMode.DESC:
+				fullDesc = SetupDescriptionDesc(fullDesc);
 				break;
 			case DetailMode.FULL:
 				fullDesc = SetupDescriptionFull(fullDesc, level);
@@ -87,6 +90,15 @@ public class Spell : ScriptableObject {
 		return fullDesc;
 	}
 
+	string SetupDescriptionDesc(string fullDesc) {
+		fullDesc = fullDesc.Replace("<dmg>", DescValueString(damage, s_damage));
+		fullDesc = fullDesc.Replace("<heal>", DescValueString(heal, s_heal));
+		fullDesc = fullDesc.Replace("<buff>", DescValueString(buffValue, s_buffValue));
+		fullDesc = fullDesc.Replace("<cd>", DescValueString(cooldown, s_cooldown));
+		fullDesc = fullDesc.Replace("<cost>", DescValueString(manaCost, s_manaCost));
+		return fullDesc;
+	}
+
 	string SetupDescriptionFull(string fullDesc, int level) {
 		level = Mathf.Max(1, level);
 
@@ -110,6 +122,10 @@ public class Spell : ScriptableObject {
 
 	string LevelupValueString(int totalValue, int scaleValue) {
 		return string.Format("{0} <color=#49BC53FF>(+{1})</color>", totalValue, scaleValue);
+	}
+
+	string DescValueString(int baseValue, int scaleValue) {
+		return string.Format("<color=#A0C7D4FF>({0} + L*{1})</color>", baseValue, scaleValue);
 	}
 
 	string FullValueString(int totalValue, int baseValue, int scaleValue) {

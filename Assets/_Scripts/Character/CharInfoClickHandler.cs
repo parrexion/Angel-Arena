@@ -5,29 +5,15 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CharacterClickHandler : MonoBehaviour, IPointerDownHandler {
+public class CharInfoClickHandler : MonoBehaviour, IPointerDownHandler {
 
-	public PlayerCharacter character;
-	public CharacterReference selectedCharacter;
 	public SpellReference selectedSpell;
-	public Image icon;
-	public Image selected;
 	public UnityEvent clickedEvent;
 
-
-	void Start() {
-		icon.sprite = character.icon;
-		selected.enabled = false;
-	}
-
-	public void Select() {
-		selected.enabled = (selectedCharacter.reference == character);
-	}
 
 	#region IPointerDownHandler implementation
 
 	public void OnPointerDown(PointerEventData eventData) {
-		selectedCharacter.reference = character;
 		selectedSpell.reference = null;
 		clickedEvent.Invoke();
 	}

@@ -8,6 +8,7 @@ public class CharacterSelectUI : MonoBehaviour {
 
 	//Selected character
 	public CharacterReference selectedCharacter;
+	public SpellReference selectedSpell;
 	private PlayerCharacter currentCharacter;
 	public Text nameText;
 	public Image characterIcon;
@@ -39,7 +40,12 @@ public class CharacterSelectUI : MonoBehaviour {
 			nameText.text = currentCharacter.characterName;
 			characterIcon.sprite = currentCharacter.icon;
 			characterIcon.enabled = true;
-			descriptionText.text = currentCharacter.description;
+			if (selectedSpell.reference != null) {
+				descriptionText.text = selectedSpell.reference.generateSpellDescription(Spell.DetailMode.DESC,1);
+			}
+			else
+				descriptionText.text = currentCharacter.description;
+			
 			for (int i = 0; i < spellImages.Length; i++) {
 				spellImages[i].sprite = currentCharacter.spells[i].icon;
 				spellImages[i].enabled = true;

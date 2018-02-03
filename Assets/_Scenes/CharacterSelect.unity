@@ -487,6 +487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: 390dc5ec689cafb40a2f69760b9c79a4, type: 2}
   selectedCharacter: {fileID: 11400000, guid: efcfb91519b141f428a8e2ce3e71be5e, type: 2}
+  selectedSpell: {fileID: 11400000, guid: 3ebd059ea11a70c43aa94e02103fcb56, type: 2}
   icon: {fileID: 166929410}
   selected: {fileID: 327788392}
   clickedEvent:
@@ -750,6 +751,7 @@ GameObject:
   - component: {fileID: 542225467}
   - component: {fileID: 542225470}
   - component: {fileID: 542225469}
+  - component: {fileID: 542225468}
   m_Layer: 0
   m_Name: Magic2
   m_TagString: Untagged
@@ -775,6 +777,36 @@ RectTransform:
   m_AnchoredPosition: {x: -100, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &542225468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 542225466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da71c44c1996ce343add0d21fd97166e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedSpell: {fileID: 11400000, guid: 3ebd059ea11a70c43aa94e02103fcb56, type: 2}
+  selectedCharacter: {fileID: 11400000, guid: efcfb91519b141f428a8e2ce3e71be5e, type: 2}
+  spellIndex: 1
+  clickedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 369b47384186de9429a5ac4e58b09995, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &542225469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,6 +1019,7 @@ GameObject:
   - component: {fileID: 1050750090}
   - component: {fileID: 1050750093}
   - component: {fileID: 1050750092}
+  - component: {fileID: 1050750091}
   m_Layer: 0
   m_Name: Magic1
   m_TagString: Untagged
@@ -1012,6 +1045,36 @@ RectTransform:
   m_AnchoredPosition: {x: -300, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1050750091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1050750089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da71c44c1996ce343add0d21fd97166e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedSpell: {fileID: 11400000, guid: 3ebd059ea11a70c43aa94e02103fcb56, type: 2}
+  selectedCharacter: {fileID: 11400000, guid: efcfb91519b141f428a8e2ce3e71be5e, type: 2}
+  spellIndex: 0
+  clickedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 369b47384186de9429a5ac4e58b09995, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1050750092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,6 +1118,7 @@ GameObject:
   - component: {fileID: 1057642764}
   - component: {fileID: 1057642767}
   - component: {fileID: 1057642766}
+  - component: {fileID: 1057642765}
   m_Layer: 0
   m_Name: Magic4
   m_TagString: Untagged
@@ -1080,6 +1144,36 @@ RectTransform:
   m_AnchoredPosition: {x: 300, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1057642765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1057642763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da71c44c1996ce343add0d21fd97166e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedSpell: {fileID: 11400000, guid: 3ebd059ea11a70c43aa94e02103fcb56, type: 2}
+  selectedCharacter: {fileID: 11400000, guid: efcfb91519b141f428a8e2ce3e71be5e, type: 2}
+  spellIndex: 3
+  clickedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 369b47384186de9429a5ac4e58b09995, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1057642766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,7 +1290,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1277904377}
   - component: {fileID: 1277904379}
-  - component: {fileID: 1277904378}
   m_Layer: 0
   m_Name: CharacterInfoUI
   m_TagString: Untagged
@@ -1217,40 +1310,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1277904378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1277904376}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45c1eaac25b64ec4e9d992e890aa972f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSpell: {fileID: 11400000, guid: 3ebd059ea11a70c43aa94e02103fcb56, type: 2}
-  nameText: {fileID: 1145568166}
-  spellIcon: {fileID: 1591976452}
-  levelText: {fileID: 0}
-  descriptionText: {fileID: 1917193876}
-  playerLevel: {fileID: 11400000, guid: e1344fb3113ed3b4db39e4951a95d761, type: 2}
-  levelupMode: {fileID: 11400000, guid: 031b1c2bdd0c29741b5b5732bf5715c9, type: 2}
-  levelupClickedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 0793dcca6908baa48b361300c40ae0b6, type: 2}
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1277904379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,6 +1322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedCharacter: {fileID: 11400000, guid: efcfb91519b141f428a8e2ce3e71be5e, type: 2}
+  selectedSpell: {fileID: 11400000, guid: 3ebd059ea11a70c43aa94e02103fcb56, type: 2}
   nameText: {fileID: 1145568166}
   characterIcon: {fileID: 1591976452}
   descriptionText: {fileID: 1917193876}
@@ -1330,6 +1390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: a1a5987e99e89ed469dcbbd89fb255c2, type: 2}
   selectedCharacter: {fileID: 11400000, guid: efcfb91519b141f428a8e2ce3e71be5e, type: 2}
+  selectedSpell: {fileID: 11400000, guid: 3ebd059ea11a70c43aa94e02103fcb56, type: 2}
   icon: {fileID: 311959825}
   selected: {fileID: 1299300787}
   clickedEvent:
@@ -1555,6 +1616,7 @@ GameObject:
   - component: {fileID: 1591976451}
   - component: {fileID: 1591976453}
   - component: {fileID: 1591976452}
+  - component: {fileID: 1591976454}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -1613,6 +1675,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1591976450}
+--- !u!114 &1591976454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1591976450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb0ca5fce52515489c2e8d0aca29aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedSpell: {fileID: 11400000, guid: 3ebd059ea11a70c43aa94e02103fcb56, type: 2}
+  clickedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 369b47384186de9429a5ac4e58b09995, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1619575436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,6 +2092,7 @@ GameObject:
   - component: {fileID: 2023018639}
   - component: {fileID: 2023018642}
   - component: {fileID: 2023018641}
+  - component: {fileID: 2023018640}
   m_Layer: 0
   m_Name: Magic3
   m_TagString: Untagged
@@ -2027,6 +2118,36 @@ RectTransform:
   m_AnchoredPosition: {x: 100, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2023018640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2023018638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da71c44c1996ce343add0d21fd97166e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedSpell: {fileID: 11400000, guid: 3ebd059ea11a70c43aa94e02103fcb56, type: 2}
+  selectedCharacter: {fileID: 11400000, guid: efcfb91519b141f428a8e2ce3e71be5e, type: 2}
+  spellIndex: 2
+  clickedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 369b47384186de9429a5ac4e58b09995, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &2023018641
 MonoBehaviour:
   m_ObjectHideFlags: 0
