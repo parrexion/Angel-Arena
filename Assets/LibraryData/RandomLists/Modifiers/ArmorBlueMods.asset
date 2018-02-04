@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b73467144c91340a1aca0dc92d76d9, type: 3}
+  m_Name: ArmorBlueMods
+  m_EditorClassIdentifier: 
+  list:
+  - probability: 5
+    modifier: {fileID: 0}
+  - probability: 20
+    modifier: {fileID: 11400000, guid: d40df87928c6ebc4d822e0b8c627fba8, type: 2}
+  - probability: 15
+    modifier: {fileID: 11400000, guid: 7971bd199617a654c97a69dd2bafd288, type: 2}
+  - probability: 11
+    modifier: {fileID: 11400000, guid: 0588e2646c7acff40a6fd5b8e16b6e9b, type: 2}
+  - probability: 17
+    modifier: {fileID: 11400000, guid: 9459cab6a96c8704d94421f35bc27795, type: 2}
+  - probability: 12
+    modifier: {fileID: 11400000, guid: 4f9fc5dc62496a4469f6e1ff0bcb7f0d, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: 24cece44981ad79449152e6b5e6c70b8, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: bfde2ae1edeff4d4db96a816b5dd15d5, type: 2}

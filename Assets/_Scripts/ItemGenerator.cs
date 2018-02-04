@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public class RarityProbabiltyTuple {
+	public int probability;
+	public ItemEntry.Rarity rarity;
+}
+
+[System.Serializable]
 public class BaseProbabiltyTuple {
 	public int probability;
 	public ItemEntry.ItemType baseType;
@@ -14,40 +20,33 @@ public class ModProbabiltyTuple {
 	public ItemModifier modifier;
 }
 
+
 public class ItemGenerator : MonoBehaviour {
 
 	public ItemEntryReference selectedItem;
 	public Sprite[] baseImages;
+	public BattleEntry.Difficulty difficulty;
+
+	[Header("Item Rarity")]
+	public RandomRarityListVariable[] rarityList;
 
 	[Header("Base Item")]
-	public List<BaseProbabiltyTuple> greenBase;
-	public List<BaseProbabiltyTuple> blueBase;
-	public List<BaseProbabiltyTuple> purpleBase;
+	public RandomTypeListVariable[] typeList;
 
 	[Header("Weapons")]
-	public List<ModProbabiltyTuple> greenModWeapon;
-	public List<ModProbabiltyTuple> blueModWeapon;
-	public List<ModProbabiltyTuple> purpleModWeapon;
+	public RandomModListVariable[] modWeapon;
 
 	[Header("Armor")]
-	public List<ModProbabiltyTuple> greenModArmor;
-	public List<ModProbabiltyTuple> blueModArmor;
-	public List<ModProbabiltyTuple> purpleModArmor;
+	public RandomModListVariable[] modArmor;
 
 	[Header("Helms")]
-	public List<ModProbabiltyTuple> greenModHelm;
-	public List<ModProbabiltyTuple> blueModHelm;
-	public List<ModProbabiltyTuple> purpleModHelm;
+	public RandomModListVariable[] modHelm;
 
 	[Header("Amulets")]
-	public List<ModProbabiltyTuple> greenModAmulets;
-	public List<ModProbabiltyTuple> blueModAmulets;
-	public List<ModProbabiltyTuple> purpleModAmulets;
+	public RandomModListVariable[] modAmulet;
 
 	[Header("Consumables")]
-	public List<ModProbabiltyTuple> greenModConsumable;
-	public List<ModProbabiltyTuple> blueModConsumable;
-	public List<ModProbabiltyTuple> purpleModConsumable;
+	public RandomModListVariable[] modConsumable;
 
 
 
@@ -55,26 +54,68 @@ public class ItemGenerator : MonoBehaviour {
 		ItemEntry testItem = selectedItem.reference;
 		if (testItem == null)
 			return;
+		
+		int rarity = (int)rarityList[(int)difficulty].GetRandomItem();
+		ItemEntry.ItemType type = typeList[rarity].GetRandomItem();
 
 		testItem.ResetValues();
-		testItem.icon = baseImages[0];
-		testItem.item_type = ItemEntry.ItemType.WEAPON;
+		testItem.type = type;
+		testItem.rarity = (ItemEntry.Rarity)rarity;
 		testItem.tintColor = Random.ColorHSV(0,1,0.5f,1,0,1,1,1);
-		testItem.moneyValue = 10;
+
+		switch (type)
+		{
+			case ItemEntry.ItemType.AMULET:
+				testItem.entryName = "AMULET";
+				testItem.icon = baseImages[3];
+				break;
+			case ItemEntry.ItemType.ARMOR:
+				testItem.entryName = "ARMOR";
+				testItem.icon = baseImages[1];
+				break;
+			case ItemEntry.ItemType.CONSUMABLE:
+				testItem.entryName = "CONSUMABLE";
+				testItem.icon = baseImages[4];
+				break;
+			case ItemEntry.ItemType.HELM:
+				testItem.entryName = "HELM";
+				testItem.icon = baseImages[2];
+				break;
+			case ItemEntry.ItemType.WEAPON:
+				testItem.entryName = "WEAPON";
+				testItem.icon = baseImages[0];
+				break;
+		}
+		ColorByRarity(testItem);
 
 		int attempts = 1;
 		while (attempts > 0) {
-
-			int roll = Random.Range(1,101);
-			roll -= greenModWeapon[0].probability;
-			ItemModifier selectedMod = greenModWeapon[0].modifier;
-			int position = 1;
-
-			while (roll > 0) {
-				roll -= greenModWeapon[position].probability;
-				selectedMod = greenModWeapon[position].modifier;
-				position++;
+			ItemModifier selectedMod = null;
+			switch (type)
+			{
+				case ItemEntry.ItemType.AMULET:
+					selectedMod = modAmulet[rarity].GetRandomItem();
+					testItem.moneyValue = 30;
+					break;
+				case ItemEntry.ItemType.ARMOR:
+					selectedMod = modArmor[rarity].GetRandomItem();
+					testItem.moneyValue = 20;
+					break;
+				case ItemEntry.ItemType.CONSUMABLE:
+					// selectedMod = modConsumable[rarity].GetRandomItem();
+					selectedMod = modArmor[2].list[3].modifier;
+					testItem.moneyValue = 0;
+					break;
+				case ItemEntry.ItemType.HELM:
+					selectedMod = modHelm[rarity].GetRandomItem();
+					testItem.moneyValue = 10;
+					break;
+				case ItemEntry.ItemType.WEAPON:
+					selectedMod = modWeapon[rarity].GetRandomItem();
+					testItem.moneyValue = 10;
+					break;
 			}
+			
 
 			if (selectedMod == null){
 				Debug.Log("Lucky you!");
@@ -94,6 +135,21 @@ public class ItemGenerator : MonoBehaviour {
 			testItem.lifestealMod += selectedMod.lifesteal;
 
 			attempts--;
+		}
+	}
+
+	void ColorByRarity(ItemEntry item) {
+		switch (item.rarity)
+		{
+		case ItemEntry.Rarity.GREEN:
+			item.entryName = "<color=#3BD248FF>" + item.entryName + "</color>";
+			break;
+		case ItemEntry.Rarity.BLUE:
+			item.entryName = "<color=#2F5DE5FF>" + item.entryName + "</color>";
+			break;
+		case ItemEntry.Rarity.PURPLE:
+			item.entryName = "<color=#F91DF3FF>" + item.entryName + "</color>";
+			break;
 		}
 	}
 }

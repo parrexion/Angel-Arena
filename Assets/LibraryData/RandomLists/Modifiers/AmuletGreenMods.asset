@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b73467144c91340a1aca0dc92d76d9, type: 3}
+  m_Name: AmuletGreenMods
+  m_EditorClassIdentifier: 
+  list:
+  - probability: 5
+    modifier: {fileID: 0}
+  - probability: 20
+    modifier: {fileID: 11400000, guid: e347c86a40b3bb9449ef417da54839d5, type: 2}
+  - probability: 15
+    modifier: {fileID: 11400000, guid: 24cece44981ad79449152e6b5e6c70b8, type: 2}
+  - probability: 15
+    modifier: {fileID: 11400000, guid: aabb1679c18c3044ca1626a9b369b198, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: f00a1c1d7cd7ebb428edf092533203eb, type: 2}
+  - probability: 15
+    modifier: {fileID: 11400000, guid: a674618c8aea23f409277a5b5c53ca24, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: 5e6f48228823d6146929610bf092ed54, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: ce3dccb3755331942b9438f2bd407f3c, type: 2}

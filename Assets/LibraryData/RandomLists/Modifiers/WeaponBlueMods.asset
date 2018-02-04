@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b73467144c91340a1aca0dc92d76d9, type: 3}
+  m_Name: WeaponBlueMods
+  m_EditorClassIdentifier: 
+  list:
+  - probability: 5
+    modifier: {fileID: 0}
+  - probability: 13
+    modifier: {fileID: 11400000, guid: 5e6f48228823d6146929610bf092ed54, type: 2}
+  - probability: 13
+    modifier: {fileID: 11400000, guid: ce3dccb3755331942b9438f2bd407f3c, type: 2}
+  - probability: 13
+    modifier: {fileID: 11400000, guid: 31c2371bef46e844caefa2c6df7c1ff2, type: 2}
+  - probability: 11
+    modifier: {fileID: 11400000, guid: 51d04d634e66b4b44a224a95f5b63447, type: 2}
+  - probability: 15
+    modifier: {fileID: 11400000, guid: 9459cab6a96c8704d94421f35bc27795, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: 586d72fdd11d85046aaa2f641f43eb9e, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: 353018c4093789946aafa2113cdc5564, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: 353018c4093789946aafa2113cdc5564, type: 2}

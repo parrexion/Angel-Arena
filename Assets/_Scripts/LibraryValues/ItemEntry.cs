@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class ItemEntry : ScrObjLibraryEntry {
 
+	public enum Rarity { GREEN, BLUE, PURPLE }
 	public enum ItemType {WEAPON, ARMOR, HELM, AMULET, CONSUMABLE, DESTROY}
-	public ItemType item_type = ItemType.CONSUMABLE;
+
+	public ItemType type = ItemType.CONSUMABLE;
+	public Rarity rarity;
 	public Sprite icon = null;
 	public Color tintColor = Color.white;
 	public int moneyValue = 0;
@@ -31,7 +35,7 @@ public class ItemEntry : ScrObjLibraryEntry {
 	public override void ResetValues() {
 		base.ResetValues();
 
-		item_type = ItemType.CONSUMABLE;
+		type = ItemType.CONSUMABLE;
 		icon = null;
 		tintColor = Color.white;
 		moneyValue = 0;
@@ -55,7 +59,7 @@ public class ItemEntry : ScrObjLibraryEntry {
 		base.CopyValues(other);
 		ItemEntry item = (ItemEntry)other;
 
-		item_type = item.item_type;
+		type = item.type;
 		icon = item.icon;
 		tintColor = item.tintColor;
 		moneyValue = item.moneyValue;

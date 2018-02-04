@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour {
 
 		if (currentEnemy < enemyHealth.Length) {
 			Debug.Log("Enemy attacked the player!");
-			player.TakeDamage(battleEntry.enemy.attack);
+			player.TakeDamage(battleEntry.enemy.damage);
 			currentEnemy++;
 			FindNextEnemy();
 		}
@@ -90,7 +90,7 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	public void TakeDamage(int enemyIndex, int damage) {
-		int realDamage = Mathf.Max(0, damage - battleEntry.enemy.defense);
+		int realDamage = Mathf.Max(0, damage - battleEntry.enemy.armor);
 		enemyHealth[enemyIndex] -= realDamage;
 		float value = (float)enemyHealth[enemyIndex] / (float)battleEntry.enemy.health;
 		enemyUIController.UpdateValue(enemyIndex, value);

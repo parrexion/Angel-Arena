@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b73467144c91340a1aca0dc92d76d9, type: 3}
+  m_Name: HelmGreenMods
+  m_EditorClassIdentifier: 
+  list:
+  - probability: 5
+    modifier: {fileID: 0}
+  - probability: 15
+    modifier: {fileID: 11400000, guid: 51d04d634e66b4b44a224a95f5b63447, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: 9459cab6a96c8704d94421f35bc27795, type: 2}
+  - probability: 15
+    modifier: {fileID: 11400000, guid: e347c86a40b3bb9449ef417da54839d5, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: 24cece44981ad79449152e6b5e6c70b8, type: 2}
+  - probability: 15
+    modifier: {fileID: 11400000, guid: 048dfd5a8157d7c4c864a2d336e61fe5, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: e3e5150ab0b749943bb0c45222554337, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: a674618c8aea23f409277a5b5c53ca24, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: b03f9e28fbe037f4ba80c37206f251ce, type: 2}

@@ -8,25 +8,20 @@ using UnityEngine.UI;
 /// </summary>
 public class SelectedItemUI : MonoBehaviour {
 
-	public Transform[] statsTextList;
-	//public Transform[] modifierTextList;
-
 	//Player stats
-	public IntVariable playerHealth;
-	public IntVariable playerAttack;
-	public IntVariable playerDefense;
+	public Transform[] statsTextList;
+	public IntVariable[] playerStats;
 
 	private Text[] names;
 	private Text[] values;
 
 	//Selected item
 	public ItemEntryReference selectedItem;
-	private ItemEntry currentItem;
 	public Text itemName;
-	private Text[] changes;
 	public Image itemIcon;
-	//private Text[] modifiers;
-	//private int effectSize;
+
+	private ItemEntry currentItem;
+	private Text[] changes;
 
 
 	void Start () {
@@ -43,12 +38,6 @@ public class SelectedItemUI : MonoBehaviour {
 			values[i].text = i.ToString();
 			changes[i].text = "";
 		}
-
-		//modifiers = new Text[modifierTextList.Length];
-		//for (int i = 0; i < modifierTextList.Length; i++) {
-		//	modifiers[i] = modifierTextList[i].GetComponent<Text>();
-		//	modifiers[i].text = "";
-		//}
 	}
 
 	void OnEnable() {
@@ -64,9 +53,16 @@ public class SelectedItemUI : MonoBehaviour {
 	/// Updates the information text of the currently selected item.
 	/// </summary>
 	void UpdateValues(){
-		values[0].text = playerHealth.value.ToString();
-		values[1].text = playerAttack.value.ToString();
-		values[2].text = playerDefense.value.ToString();
+
+		values[0].text = playerStats[0].value.ToString();
+		values[1].text = playerStats[1].value.ToString();
+		values[2].text = playerStats[2].value.ToString();
+		values[3].text = playerStats[3].value.ToString();
+		values[4].text = playerStats[4].value.ToString();
+		values[5].text = playerStats[5].value.ToString();
+		values[6].text = playerStats[6].value + "%";
+		values[7].text = playerStats[7].value + "%";
+		values[8].text = playerStats[8].value + "%";
 
 		if (selectedItem.reference != null) {
 			currentItem = selectedItem.reference;
@@ -76,13 +72,14 @@ public class SelectedItemUI : MonoBehaviour {
 			itemIcon.enabled = true;
 			
 			changes[0].text = (currentItem.healthMod != 0) ? "+" + currentItem.healthMod.ToString() : "";
-			changes[1].text = (currentItem.damageMod != 0) ? "+" + currentItem.damageMod.ToString() : "";
-			changes[2].text = (currentItem.armorMod != 0) ? "+" + currentItem.armorMod.ToString() : "";
-
-			//effectSize = Mathf.Min(3,currentItem.percentModifiers.Count);
-			//for (int i = 0; i < 3; i++) {
-			//	modifiers[i].text = (i < effectSize) ? currentItem.percentModifiers[i].GetEffectString() : "";
-			//}
+			changes[1].text = (currentItem.manaMod != 0) ? "+" + currentItem.manaMod.ToString() : "";
+			changes[2].text = (currentItem.damageMod != 0) ? "+" + currentItem.damageMod.ToString() : "";
+			changes[3].text = (currentItem.armorMod != 0) ? "+" + currentItem.armorMod.ToString() : "";
+			changes[4].text = (currentItem.healthRegMod != 0) ? "+" + currentItem.healthRegMod.ToString() : "";
+			changes[5].text = (currentItem.manaRegMod != 0) ? "+" + currentItem.manaRegMod.ToString() : "";
+			changes[6].text = (currentItem.magicResMod != 0) ? "+" + currentItem.magicResMod.ToString() : "";
+			changes[7].text = (currentItem.critMod != 0) ? "+" + currentItem.critMod.ToString() : "";
+			changes[8].text = (currentItem.lifestealMod != 0) ? "+" + currentItem.lifestealMod.ToString() : "";
 		}
 		else {
 			itemName.text = "";
@@ -90,9 +87,6 @@ public class SelectedItemUI : MonoBehaviour {
 			changes[1].text = "";
 			changes[2].text = "";
 			itemIcon.enabled = false;
-			//modifiers[0].text = "";
-			//modifiers[1].text = "";
-			//modifiers[2].text = "";
 		}
 	}
 }

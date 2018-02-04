@@ -8,16 +8,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40ad1f3b259539143b1ef086f894229a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2efe29377e4beae4093bed13ef1c881d, type: 3}
   m_Name: TestItem
   m_EditorClassIdentifier: 
-  uuid: TestItem
-  entryName: Test Item
-  item_type: 1
+  uuid: 
+  entryName: 
+  item_type: 0
   icon: {fileID: 21300000, guid: 531a8ec1dffc9dc4f9b6a5893a692125, type: 3}
-  tintColor: {r: 0.02551903, g: 0.062125538, b: 0.43382353, a: 1}
-  moneyValue: 0
-  healthModifier: 5
-  attackModifier: 3
-  defenseModifier: 1
-  percentModifiers: []
+  tintColor: {r: 0.18520348, g: 0.4738879, b: 0.68797857, a: 1}
+  moneyValue: 225
+  healthMod: 10
+  manaMod: 0
+  damageMod: 5
+  armorMod: 0
+  healthRegMod: 0
+  manaRegMod: 0
+  magicResMod: 0
+  critMod: 0
+  lifestealMod: 0

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5378811472618f04c8dfc4efb7ac3ee3, type: 3}
+  m_Name: FightSkeleton
+  m_EditorClassIdentifier: 
+  uuid: FightSkeleton
+  entryName: FightSkeleton
+  enemy: {fileID: 11400000, guid: 4144a7960ca070c4c87456353fc5d993, type: 2}
+  noOfEnemiesMin: 2
+  noOfEnemiesMax: 5
+  difficulty: 1

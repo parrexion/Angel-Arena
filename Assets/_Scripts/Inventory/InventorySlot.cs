@@ -6,6 +6,7 @@ using UnityEngine.UI;
 /// </summary>
 [System.Serializable]
 public class SlotID {
+	public bool allowAnyType = true;
 	public ItemEntry.ItemType type;
 	public int id;
 }
@@ -26,10 +27,11 @@ public class InventorySlot : MonoBehaviour {
 	/// </summary>
 	/// <param name="type"></param>
 	/// <param name="id"></param>
-	public void SetID(ItemEntry.ItemType type, int id) {
+	public void SetID(ItemEntry.ItemType type, int id, bool allowAnyType) {
 		slotID = new SlotID();
 		slotID.type = type;
 		slotID.id = id;
+		slotID.allowAnyType = allowAnyType;
 	}
 
 	/// <summary>

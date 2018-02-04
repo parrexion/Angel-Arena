@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b73467144c91340a1aca0dc92d76d9, type: 3}
+  m_Name: ArmorPurpleMods
+  m_EditorClassIdentifier: 
+  list:
+  - probability: 10
+    modifier: {fileID: 0}
+  - probability: 18
+    modifier: {fileID: 11400000, guid: 0588e2646c7acff40a6fd5b8e16b6e9b, type: 2}
+  - probability: 13
+    modifier: {fileID: 11400000, guid: a0d25b7e1fb60224d9c8ad627b04aa11, type: 2}
+  - probability: 11
+    modifier: {fileID: 11400000, guid: 7aeffd18048fd9c438bab2594be4fb26, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: 4f9fc5dc62496a4469f6e1ff0bcb7f0d, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: bcb3374803ca3044a81fcb8594e651a3, type: 2}
+  - probability: 10
+    modifier: {fileID: 11400000, guid: 2e6edc105ca78724da13ce590a62397a, type: 2}
+  - probability: 9
+    modifier: {fileID: 11400000, guid: 930bd3df9ac69de47bf0d2fb7afbd22e, type: 2}
+  - probability: 9
+    modifier: {fileID: 11400000, guid: 651c92053aa034946858d65b39700b6a, type: 2}

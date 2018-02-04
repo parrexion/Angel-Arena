@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6512c0cf6b2674cbe51e6dc373d8fb, type: 3}
+  m_Name: MagicianSpell
+  m_EditorClassIdentifier: 
+  spellName: Fireball - Magician -
+  icon: {fileID: 21300000, guid: 6e8fd265635fade4089d4d88a6cbefd4, type: 3}
+  description: Fires a fireball which deals <dmg> damage to a single enemy.
+  useable: 0
+  ultimate: 0
+  spellType: 0
+  damage: 10
+  heal: 0
+  buffValue: 0
+  cooldown: 2
+  manaCost: 10
+  s_damage: 0
+  s_heal: 0
+  s_buffValue: 0
+  s_cooldown: 0
+  s_manaCost: 0

@@ -38,7 +38,6 @@ public class InventoryHandler : MonoBehaviour {
 	/// <param name="item"></param>
 	/// <returns></returns>
 	public bool AddEquip(ItemEntry item) {
-
 		for (int i = 0; i < equippedItems.values.Length; i++) {
 			if (equippedItems.values[i] == null) {
 				equippedItems.values[i] = item;
@@ -66,9 +65,16 @@ public class InventoryHandler : MonoBehaviour {
 			Remove(posA);
 
 		// Debug.Log(string.Format("Swappy: {0} <> {1}", posA, posB));
-		ItemEntry temp = GetItem(posA);
-		SetItem(posA,GetItem(posB));
-		SetItem(posB,temp);
+		ItemEntry itemA = GetItem(posA);
+		ItemEntry itemB = GetItem(posB);
+
+		bool allowed = (slotA.allowAnyType || itemB == null || slotA.type == itemB.type) && 
+						(slotB.allowAnyType || itemA == null || slotB.type == itemA.type);
+		if (!allowed)
+			return;
+
+		SetItem(posA,itemB);
+		SetItem(posB,itemA);
 
 		itemsChanged.Invoke();
 	}

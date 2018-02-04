@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5378811472618f04c8dfc4efb7ac3ee3, type: 3}
+  m_Name: FightSpectres
+  m_EditorClassIdentifier: 
+  uuid: FightSpectres
+  entryName: FightSpectres
+  enemy: {fileID: 11400000, guid: 386bd80dfc7e1b34093fe646ab6941bb, type: 2}
+  noOfEnemiesMin: 1
+  noOfEnemiesMax: 4
+  difficulty: 2

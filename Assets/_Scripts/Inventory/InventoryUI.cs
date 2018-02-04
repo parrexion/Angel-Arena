@@ -20,12 +20,13 @@ public class InventoryUI : MonoBehaviour {
 
 		//Slot initialization
 		equipSlots = equipItemsParent.GetComponentsInChildren<InventorySlot>();
-		for (int i = 0; i < equipSlots.Length; i++) {
-			equipSlots[i].SetID(ItemEntry.ItemType.ARMOR,-(i+1));
-		}
+		equipSlots[0].SetID(ItemEntry.ItemType.WEAPON,-1,false);
+		equipSlots[1].SetID(ItemEntry.ItemType.ARMOR,-2,false);
+		equipSlots[2].SetID(ItemEntry.ItemType.HELM,-3,false);
+		equipSlots[3].SetID(ItemEntry.ItemType.AMULET,-4,false);
 		bagSlots = bagItemsParent.GetComponentsInChildren<InventorySlot>();
 		for (int i = 0; i < bagSlots.Length; i++) {
-			bagSlots[i].SetID(ItemEntry.ItemType.WEAPON,i);
+			bagSlots[i].SetID(ItemEntry.ItemType.WEAPON,i,true);
 		}
 
 		Debug.Log("Initiated the slot ids");
