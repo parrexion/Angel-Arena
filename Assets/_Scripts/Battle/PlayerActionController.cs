@@ -51,6 +51,11 @@ public class PlayerActionController : MonoBehaviour {
 	/// </summary>
 	public void StartTurn() {
 		actionCanvas.enabled = true;
+		if (enemies.CheckWin()) {
+			currentBattleState.value = 9;
+			nextPhaseEvent.Invoke();
+			return;
+		}
 	}
 
 	/// <summary>
@@ -58,6 +63,7 @@ public class PlayerActionController : MonoBehaviour {
 	/// </summary>
 	public void BasicAttackSelect() {
 		selectCanvas.enabled = true;
+		actionCanvas.enabled = false;
 		currentAttackType = AttackType.BASIC;
 	}
 
@@ -110,12 +116,19 @@ public class PlayerActionController : MonoBehaviour {
 			damage *= 3;
 		}
 
-		enemies.TakeDamage(index, damage);
+		int dealtDamage = enemies.TakePhysicalDamage(index, damage);
+
+		if (dealtDamage > 0) {
+			float lifestealMult = statsController.lifesteal.value / 100.0f;
+			Debug.Log("Lifesteal multi: " + lifestealMult);
+			int gainedHealth = (int)(lifestealMult * dealtDamage);
+			HealDamage(gainedHealth);
+		}
 
 		int famIndex = FamiliarAttack();
 		if (famIndex >= 0) {
 			yield return new WaitForSeconds(0.5f);
-			enemies.TakeDamage(famIndex, familiarDamage.value);
+			enemies.TakePhysicalDamage(famIndex, familiarDamage.value);
 		}
 
 		currentBattleState.value++;
@@ -146,15 +159,15 @@ public class PlayerActionController : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Deals the damage to the player after subtracting defenses.
+	/// Deals the physical damage to the player after subtracting defenses.
 	/// If there is a familiar in play then the familiar takes the damage instead.
 	/// </summary>
 	/// <param name="damage"></param>
-	public void TakeDamage(int damage) {
+	public void TakePhysicalDamage(int damage) {
 		if (familiarHealth.value > 0) {
 			familiarHealth.value -= damage;
 			Debug.Log("Enemy hurt familiar for " + damage + " damage.");
-			if (familiarHealth.value <= 0){
+			if (familiarHealth.value <= 0) {
 				familiarTransform.gameObject.SetActive(false);
 			}
 			return;
@@ -164,6 +177,44 @@ public class PlayerActionController : MonoBehaviour {
 		Debug.Log("Enemy hurt player for " + realDamage + " damage.");
 		Transform dmg = Instantiate(damageNumber, playerTransform.position, Quaternion.identity);
 		dmg.GetComponent<DamageNumberDisplay>().damage = realDamage;
+	}
+
+	/// <summary>
+	/// Deals the magic damage to the player.
+	/// If there is a familiar in play then the familiar takes the damage instead.
+	/// </summary>
+	/// <param name="damage"></param>
+	public void TakeMagicDamage(int damage) {
+		Transform dmg;
+		if (familiarHealth.value > 0) {
+			familiarHealth.value -= damage;
+			Debug.Log("Enemy hurt familiar for " + damage + " magic damage.");
+			dmg = Instantiate(damageNumber, familiarTransform.position, Quaternion.identity);
+			dmg.GetComponent<DamageNumberDisplay>().damage = damage;
+			if (familiarHealth.value <= 0) {
+				familiarTransform.gameObject.SetActive(false);
+			}
+			return;
+		}
+		int magicRes = Random.Range(0, 100);
+		if (magicRes < statsController.magicRes.value)
+			damage = 0;
+
+		int realDamage = Mathf.Max(0, damage - statsController.armor.value);
+		if (realDamage <= 0) {
+			Debug.Log("Player resisted the spell!");
+			dmg = Instantiate(damageNumber, playerTransform.position, Quaternion.identity);
+			dmg.GetComponent<DamageNumberDisplay>().damage = realDamage;
+			return;
+		}
+		statsController.currentHP.value -= realDamage;
+		Debug.Log("Enemy hurt player for " + realDamage + " magic damage.");
+		dmg = Instantiate(damageNumber, playerTransform.position, Quaternion.identity);
+		dmg.GetComponent<DamageNumberDisplay>().damage = realDamage;
+
+		if (statsController.currentHP.value <= 0) {
+			PlayerDeath();
+		}
 	}
 
 	/// <summary>
@@ -203,5 +254,12 @@ public class PlayerActionController : MonoBehaviour {
 		familiarHealth.value = health;
 		familiarMaxHealth.value = familiarHealth.value;
 		familiarTransform.gameObject.SetActive(true);
+	}
+
+	/// <summary>
+	/// Called when the player's health reaches 0.
+	/// </summary>
+	void PlayerDeath() {
+		Debug.Log("### PLAYER DIED ###");
 	}
 }

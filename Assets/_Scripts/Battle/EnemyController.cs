@@ -10,16 +10,18 @@ public class EnemyController : MonoBehaviour {
 	public EnemyUIController enemyUIController;
 	public PlayerActionController player;
 	public Transform damageNumber;
-	public IntVariable noOfEnemies;
 	public UnityEvent nextPhaseEvent;
 
 	[Header("Enemies")]
-	public BattleEntry battleEntry;
+	public BattleEntryReference selectedBattle;
+	public IntVariable noOfEnemies;
 	public Transform[] enemyTransforms;
 	public Button[] targetButtons;
 
 	private int currentEnemy;
-	private int[] enemyHealth;
+	public int[] enemyHealth;
+
+	public Text enemyTypeText;
 
 
 	// Use this for initialization
@@ -29,8 +31,9 @@ public class EnemyController : MonoBehaviour {
 
 	void InitializeEnemies() {
 		Debug.Log("Init");
+		enemyTypeText.text = selectedBattle.reference.entryName;
 		currentEnemy = 0;
-		noOfEnemies.value = Random.Range(battleEntry.noOfEnemiesMin, battleEntry.noOfEnemiesMax+1);
+		noOfEnemies.value = selectedBattle.reference.GetRandomNumber();
 		enemyHealth = new int[noOfEnemies.value];
 		for (int i = 0; i < enemyTransforms.Length; i++) {
 			if (i >= noOfEnemies.value) {
@@ -38,8 +41,8 @@ public class EnemyController : MonoBehaviour {
 				targetButtons[i].gameObject.SetActive(false);
 				continue;
 			}
-			enemyTransforms[i].GetChild(0).GetComponent<SpriteRenderer>().sprite = battleEntry.enemy.color;
-			enemyHealth[i] = battleEntry.enemy.health;
+			enemyTransforms[i].GetChild(0).GetComponent<SpriteRenderer>().sprite = selectedBattle.reference.enemy.color;
+			enemyHealth[i] = selectedBattle.reference.enemy.health;
 			enemyUIController.UpdateValue(i, 1);
 		}
 	}
@@ -54,10 +57,14 @@ public class EnemyController : MonoBehaviour {
 		}
 
 		FindNextEnemy();
+		int damage = selectedBattle.reference.enemy.damage;
+		int crit = Random.Range(0, 100);
+		if (crit < selectedBattle.reference.enemy.crit)
+			damage *= 3;
 
 		if (currentEnemy < enemyHealth.Length) {
 			Debug.Log("Enemy attacked the player!");
-			player.TakeDamage(battleEntry.enemy.damage);
+			player.TakePhysicalDamage(selectedBattle.reference.enemy.damage);
 			currentEnemy++;
 			FindNextEnemy();
 		}
@@ -89,17 +96,61 @@ public class EnemyController : MonoBehaviour {
 		return -1;
 	}
 
-	public void TakeDamage(int enemyIndex, int damage) {
-		int realDamage = Mathf.Max(0, damage - battleEntry.enemy.armor);
-		enemyHealth[enemyIndex] -= realDamage;
-		float value = (float)enemyHealth[enemyIndex] / (float)battleEntry.enemy.health;
+	public void TakeMagicDamage(int enemyIndex, int damage) {
+		Transform dmg;
+
+		int magicRes = Random.Range(0, 100);
+		if (magicRes < selectedBattle.reference.enemy.magicResist) {
+			Debug.Log("Enemy " + enemyIndex + " resisted the magic!");
+			dmg = Instantiate(damageNumber, enemyTransforms[enemyIndex].position, Quaternion.identity);
+			dmg.GetComponent<DamageNumberDisplay>().damage = 0;
+			dmg.GetComponent<DamageNumberDisplay>().dodged = true;
+			return;
+		}
+
+		enemyHealth[enemyIndex] -= damage;
+		float value = (float)enemyHealth[enemyIndex] / (float)selectedBattle.reference.enemy.health;
 		enemyUIController.UpdateValue(enemyIndex, value);
-		Debug.Log("Player hurt enemy " + enemyIndex + " for " + realDamage + " damage.");
-		Transform dmg = Instantiate(damageNumber, enemyTransforms[enemyIndex].position, Quaternion.identity);
-		dmg.GetComponent<DamageNumberDisplay>().damage = realDamage;
+		Debug.Log("Player hurt enemy " + enemyIndex + " for " + damage + " magic damage.");
+		dmg = Instantiate(damageNumber, enemyTransforms[enemyIndex].position, Quaternion.identity);
+		dmg.GetComponent<DamageNumberDisplay>().damage = damage;
+		dmg.GetComponent<DamageNumberDisplay>().dodged = false;
 
 		if (enemyHealth[enemyIndex] <= 0)
 			Die(enemyIndex);
+	}
+
+	public int TakePhysicalDamage(int enemyIndex, int damage) {
+		Transform dmg;
+
+		int dodge = Random.Range(0, 100);
+		if (dodge < selectedBattle.reference.enemy.dodge) {
+			Debug.Log("Enemy " + enemyIndex + " dodged the attack!");
+			dmg = Instantiate(damageNumber, enemyTransforms[enemyIndex].position, Quaternion.identity);
+			dmg.GetComponent<DamageNumberDisplay>().damage = 0;
+			dmg.GetComponent<DamageNumberDisplay>().dodged = true;
+			return 0;
+		}
+
+		int realDamage = Mathf.Max(0, damage - selectedBattle.reference.enemy.armor);
+		if (realDamage <= 0) {
+			Debug.Log("Enemy " + enemyIndex + " resisted the attack!");
+			dmg = Instantiate(damageNumber, enemyTransforms[enemyIndex].position, Quaternion.identity);
+			dmg.GetComponent<DamageNumberDisplay>().damage = realDamage;
+			dmg.GetComponent<DamageNumberDisplay>().dodged = false;
+			return 0;
+		}
+		enemyHealth[enemyIndex] -= realDamage;
+		float value = (float)enemyHealth[enemyIndex] / (float)selectedBattle.reference.enemy.health;
+		enemyUIController.UpdateValue(enemyIndex, value);
+		Debug.Log("Player hurt enemy " + enemyIndex + " for " + realDamage + " damage.");
+		dmg = Instantiate(damageNumber, enemyTransforms[enemyIndex].position, Quaternion.identity);
+		dmg.GetComponent<DamageNumberDisplay>().damage = realDamage;
+		dmg.GetComponent<DamageNumberDisplay>().dodged = false;
+
+		if (enemyHealth[enemyIndex] <= 0)
+			Die(enemyIndex);
+		return realDamage;
 	}
 
 	void Die(int index) {

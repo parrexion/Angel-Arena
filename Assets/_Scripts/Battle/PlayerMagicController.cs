@@ -34,6 +34,9 @@ public class PlayerMagicController : MonoBehaviour {
 		UpdateSpells();
 	}
 
+	/// <summary>
+	/// Counts down the cooldown of the spells.
+	/// </summary>
 	public void ReduceCooldowns() {
 		for (int i = 0; i < spells.Length; i++) {
 			cooldowns[i]--;
@@ -41,6 +44,9 @@ public class PlayerMagicController : MonoBehaviour {
 		UpdateSpells();
 	}
 
+	/// <summary>
+	/// Updates the icons for the spells with cooldown and mana cost.
+	/// </summary>
 	public void UpdateSpells() {
 		for (int i = 0; i < spells.Length; i++) {
 			buttonTexts[i].text = (cooldowns[i] > 0) ? cooldowns[i].ToString() : "";
@@ -53,6 +59,12 @@ public class PlayerMagicController : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Uses the selected spell on the target (if any).
+	/// Different effects depending on type.
+	/// </summary>
+	/// <param name="target"></param>
+	/// <param name="spellIndex"></param>
 	public void UseSpell(int target, int spellIndex) {
 		Debug.Log("Used magic no " + spellIndex + " on the enemy!");
 		cooldowns[spellIndex] = spells[spellIndex].reference.cooldown;
@@ -60,7 +72,7 @@ public class PlayerMagicController : MonoBehaviour {
 		switch (spells[spellIndex].reference.spellType)
 		{
 			case Spell.SpellType.SINGLE:
-				enemyController.TakeDamage(target,spells[spellIndex].reference.damage);
+				enemyController.TakeMagicDamage(target,spells[spellIndex].reference.damage);
 				break;
 			case Spell.SpellType.HEAL:
 				playerController.HealDamage(spells[spellIndex].reference.heal);

@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemEntry : ScrObjLibraryEntry {
 
 	public enum Rarity { GREEN, BLUE, PURPLE }
-	public enum ItemType {WEAPON, ARMOR, HELM, AMULET, CONSUMABLE, DESTROY}
+	public enum ItemType {WEAPON, ARMOR, HELM, AMULET, CONSUMABLE, RECIPE, DESTROY = 31}
 
 	public ItemType type = ItemType.CONSUMABLE;
 	public Rarity rarity;
@@ -35,7 +35,7 @@ public class ItemEntry : ScrObjLibraryEntry {
 	public override void ResetValues() {
 		base.ResetValues();
 
-		type = ItemType.CONSUMABLE;
+		type = ItemType.RECIPE;
 		icon = null;
 		tintColor = Color.white;
 		moneyValue = 0;

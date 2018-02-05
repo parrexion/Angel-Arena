@@ -19,4 +19,8 @@ public class BattleEntry : ScrObjLibraryEntry {
 	public int noOfEnemiesMax = 2;
 	public Difficulty difficulty = Difficulty.EASY;
 
+
+	public int GetRandomNumber() {
+		return Random.Range(noOfEnemiesMin, noOfEnemiesMax + 1);
+	}
 }

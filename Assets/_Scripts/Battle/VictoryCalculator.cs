@@ -11,26 +11,26 @@ public class VictoryCalculator : MonoBehaviour {
 	public Transform lootObject;
 
 	[Header("Values")]
-	public BattleEntry battleEntry;
+	public BattleEntryReference selectedBattle;
 	public IntVariable noOfEnemies;
 	public IntVariable totalExp;
 	public IntVariable totalMoney;
 
-
-	// Use this for initialization
-	void OnEnable() {
-		CalculateWinnings();
-	}
 	
-
-	void CalculateWinnings() {
-		int gainedExp = battleEntry.enemy.exp * noOfEnemies.value;
-		int gainedMoney = battleEntry.enemy.money * noOfEnemies.value;
+	public void CalculateWinnings() {
+		int gainedExp = selectedBattle.reference.enemy.exp * noOfEnemies.value;
+		int gainedMoney = selectedBattle.reference.enemy.money * noOfEnemies.value;
 		totalExp.value += gainedExp;
 		totalMoney.value += gainedMoney;
 
 		expText.text = "EXP gained:   " + gainedExp;
 		moneyText.text = "Money gained:   " + gainedMoney;
+
+		Debug.Log("############WIWNWIWNWINW");
+		Debug.Log("EXP gained:   " + selectedBattle.reference.enemy.exp);
+		Debug.Log("Money gained:   " + selectedBattle.reference.enemy.money);
+		Debug.Log("EXP gained:   " + gainedExp);
+		Debug.Log("Money gained:   " + gainedMoney);
 
 		//Handle loot here
 		lootObject.gameObject.SetActive(false);

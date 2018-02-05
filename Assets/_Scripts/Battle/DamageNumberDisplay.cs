@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DamageNumberDisplay : MonoBehaviour {
 	
 	public int damage;
+	public bool dodged;
 	public float time = 1f;
 
 	private float currentTime;
@@ -24,12 +25,6 @@ public class DamageNumberDisplay : MonoBehaviour {
 		style.fontSize = (int)(25 * Screen.height / 512f);
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = Color.white;
-
-		//styleOutline = new GUIStyle();
-		//styleOutline.fontSize = (int)(30 * Screen.height / 512f);
-		//styleOutline.alignment = TextAnchor.MiddleCenter;
-		//styleOutline.normal.textColor = Color.black;
-
 	}
 
 	void Update() {
@@ -51,7 +46,14 @@ public class DamageNumberDisplay : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		//GUI.Label(rN,damage.ToString(),styleOutline);
-		GUI.Label(rN,damage.ToString(),style);
+		if (dodged) {
+			GUI.Label(rN, "Evaded", style);
+		}
+		else if (damage <= 0) {
+			GUI.Label(rN, "Resisted", style);
+		}
+		else {
+			GUI.Label(rN,damage.ToString(),style);
+		}
 	}
 }

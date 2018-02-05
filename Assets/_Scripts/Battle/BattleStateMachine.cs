@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BattleStateMachine : MonoBehaviour {
@@ -14,6 +15,7 @@ public class BattleStateMachine : MonoBehaviour {
 	public PlayerMagicController magicController;
 	public Canvas playerActions;
 	public Canvas victoryCanvas;
+	public VictoryCalculator victoryCalc;
 	public Text bigText;
 
 	public IntVariable totalExp;
@@ -27,6 +29,10 @@ public class BattleStateMachine : MonoBehaviour {
 	void Start() {
 		currentBattleState.value = 0;
 		TriggerState();
+	}
+
+	public void ReturnToMap() {
+		SceneManager.LoadScene("Map");
 	}
 	
 	// Update is called once per frame
@@ -94,6 +100,7 @@ public class BattleStateMachine : MonoBehaviour {
 		bigText.text = "VICTORY";
 		yield return new WaitForSeconds(delay);
 		bigText.text = "";
+		victoryCalc.CalculateWinnings();
 		victoryCanvas.enabled = true;
 		yield break;
 	}

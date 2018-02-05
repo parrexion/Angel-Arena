@@ -13,18 +13,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - probability: 23
-    battle: {fileID: 0}
+    battle: {fileID: 11400000, guid: 43f61e8d55b253148934e7b21cebacd4, type: 2}
   - probability: 10
-    battle: {fileID: 0}
+    battle: {fileID: 11400000, guid: 766ba45de19915e4687600a136720fac, type: 2}
   - probability: 10
-    battle: {fileID: 0}
+    battle: {fileID: 11400000, guid: 6c2024b1c9b403241b52634aed192396, type: 2}
   - probability: 17
-    battle: {fileID: 0}
+    battle: {fileID: 11400000, guid: b062bc57626fdf442a54b94cb52b3769, type: 2}
   - probability: 16
-    battle: {fileID: 0}
+    battle: {fileID: 11400000, guid: 53942a910060243469a84733ea6f4678, type: 2}
   - probability: 9
-    battle: {fileID: 0}
+    battle: {fileID: 11400000, guid: 2086610c7693ead48a19096ffbb97964, type: 2}
   - probability: 14
-    battle: {fileID: 0}
+    battle: {fileID: 11400000, guid: 25588389ed3dce5488d53dd8e21b2cee, type: 2}
   - probability: 1
-    battle: {fileID: 0}
+    battle: {fileID: 11400000, guid: 46e034b600e858049bcd43715d9322a4, type: 2}
