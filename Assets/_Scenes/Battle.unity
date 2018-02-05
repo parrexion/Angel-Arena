@@ -3231,6 +3231,7 @@ MonoBehaviour:
   - {fileID: 855497057}
   - {fileID: 1970612259}
   - {fileID: 1869775101}
+  enemyHealth: 
   enemyTypeText: {fileID: 91476722}
 --- !u!4 &955273746
 Transform:
@@ -3478,7 +3479,7 @@ MonoBehaviour:
   expText: {fileID: 1716895444}
   moneyText: {fileID: 517237386}
   lootObject: {fileID: 1712466310}
-  battleEntry: {fileID: 11400000, guid: 43f61e8d55b253148934e7b21cebacd4, type: 2}
+  selectedBattle: {fileID: 11400000, guid: 24c9c83869fa1a04faf5edffca774fa8, type: 2}
   noOfEnemies: {fileID: 11400000, guid: 6ab70a4b2122cb84aaaaaaa2a6dc9951, type: 2}
   totalExp: {fileID: 11400000, guid: cb5629232f6b5fb4c9646f05ae069f87, type: 2}
   totalMoney: {fileID: 11400000, guid: b855e63081022924b9baf5d56e60091e, type: 2}
@@ -6359,6 +6360,7 @@ MonoBehaviour:
   magicController: {fileID: 169407140}
   playerActions: {fileID: 2098327383}
   victoryCanvas: {fileID: 1375895733}
+  victoryCalc: {fileID: 1002986969}
   bigText: {fileID: 748233011}
   totalExp: {fileID: 11400000, guid: cb5629232f6b5fb4c9646f05ae069f87, type: 2}
   totalMoney: {fileID: 11400000, guid: b855e63081022924b9baf5d56e60091e, type: 2}
