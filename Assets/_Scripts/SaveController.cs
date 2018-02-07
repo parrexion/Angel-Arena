@@ -6,7 +6,7 @@ public class SaveController : MonoBehaviour {
 
 #region Singleton
 	private static SaveController instance = null;
-	void OnAwake() {
+	void Awake() {
 		if (instance != null) {
 			Destroy(gameObject);
 		}
@@ -18,9 +18,19 @@ public class SaveController : MonoBehaviour {
 #endregion
 
 	[Header("Player Stats")]
+	public CharacterReference selectedCharacter;
 	public IntVariable[] intVars;
 	public SpellReference[] spellRefs;
 
+	[Header("Inventory")]
+	public InvListVariable equipItems;
+	public InvListVariable bagItems;
+
+	[Header("Progress")]
+	public IntVariable[] dungeonProgress;
+
+	[Header("Battle")]
+	public BattleEntryReference currentBattle;
 
 
 	public void SaveGame() {

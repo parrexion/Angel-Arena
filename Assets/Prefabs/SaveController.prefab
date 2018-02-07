@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16f6aa653f2f014daa6e12a6da4b55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedCharacter: {fileID: 11400000, guid: efcfb91519b141f428a8e2ce3e71be5e, type: 2}
   intVars:
   - {fileID: 11400000, guid: 3ff255e87aba6074f85d4ce883c93e4d, type: 2}
   - {fileID: 11400000, guid: ae194ab4249ddbb4ba9c21f2c7da7a28, type: 2}
@@ -71,3 +72,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bb8ccc8dcafdf3a4280b7e7df969146a, type: 2}
   - {fileID: 11400000, guid: 4221419dc0c346847b5640202fcca306, type: 2}
   - {fileID: 11400000, guid: 9a6d15b51495c0d41af385de65da965a, type: 2}
+  equipItems: {fileID: 11400000, guid: 18898ccea7d039540a1570e3e27e51d2, type: 2}
+  bagItems: {fileID: 11400000, guid: 9a3327d85c1342f4d984920100d2ab69, type: 2}
+  dungeonProgress:
+  - {fileID: 11400000, guid: e9eb836b3fb2aee4da6a310a7b334700, type: 2}
+  - {fileID: 11400000, guid: f0d0ccc3c77eec64b9d8b93f78ced197, type: 2}
+  currentBattle: {fileID: 11400000, guid: 24c9c83869fa1a04faf5edffca774fa8, type: 2}

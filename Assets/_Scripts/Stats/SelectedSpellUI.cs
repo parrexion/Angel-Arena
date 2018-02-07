@@ -20,11 +20,10 @@ public class SelectedSpellUI : MonoBehaviour {
 	[Header("Player level")]
 	public Text playerLevelText;
 	public IntVariable playerLevel;
-	public Button levelupButton;
 
-	[Header("Ref values")]
+	[Header("Leveling stuff")]
+	public Button levelupButton;
 	public BoolVariable levelupMode;
-	public UnityEvent levelupClickedEvent;
 
 
 	void OnEnable() {
@@ -61,15 +60,5 @@ public class SelectedSpellUI : MonoBehaviour {
 			levelText.text = "";
 			descriptionText.text = "";
 		}
-	}
-
-	/// <summary>
-	/// Toggles the levelup mode.
-	/// </summary>
-	public void ToggleLeveupMode() {
-		if (levelupMode.value)
-			return;
-		levelupMode.value = true;
-		levelupClickedEvent.Invoke();
 	}
 }

@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Class which contains help functions for manipulating the inventory lists.
 /// </summary>
 public class InventoryHandler : MonoBehaviour {
 
-	public UnityEvent itemsChanged;
+	public string townName = "Town";
 
 	public InvListVariable equippedItems;
 	public InvListVariable bagItems;
+	
+	public UnityEvent itemsChanged;
 
 
 	/// <summary>
@@ -131,4 +134,11 @@ public class InventoryHandler : MonoBehaviour {
 		}
 	}
 		
+
+	/// <summary>
+	/// Return to the town screen.
+	/// </summary>
+	public void ReturnToTown() {
+		SceneManager.LoadScene(townName);
+	}
 }
