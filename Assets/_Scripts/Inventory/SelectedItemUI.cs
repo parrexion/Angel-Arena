@@ -8,16 +8,21 @@ using UnityEngine.UI;
 /// </summary>
 public class SelectedItemUI : MonoBehaviour {
 
-	//Player stats
+	[Header("Settings")]
+	public bool showTotal;
+	public bool showChanges;
+
+	[Header("Transforms")]
 	public Transform[] statsTextList;
 	public IntVariable[] playerStats;
 
 	private Text[] names;
 	private Text[] values;
 
-	//Selected item
+	[Header("Selected Item")]
 	public ItemEntryReference selectedItem;
 	public Text itemName;
+	public Text itemType;
 	public Image itemIcon;
 
 	private ItemEntry currentItem;
@@ -35,7 +40,7 @@ public class SelectedItemUI : MonoBehaviour {
 			names[i] = t[0];
 			values[i] = t[1];
 			changes[i] = t[2];
-			values[i].text = i.ToString();
+			values[i].text = "";
 			changes[i].text = "";
 		}
 	}
@@ -54,19 +59,25 @@ public class SelectedItemUI : MonoBehaviour {
 	/// </summary>
 	void UpdateValues(){
 
-		values[0].text = playerStats[0].value.ToString();
-		values[1].text = playerStats[1].value.ToString();
-		values[2].text = playerStats[2].value.ToString();
-		values[3].text = playerStats[3].value.ToString();
-		values[4].text = playerStats[4].value.ToString();
-		values[5].text = playerStats[5].value.ToString();
-		values[6].text = playerStats[6].value + "%";
-		values[7].text = playerStats[7].value + "%";
-		values[8].text = playerStats[8].value + "%";
+		if (showTotal) {
+			values[0].text = playerStats[0].value.ToString();
+			values[1].text = playerStats[1].value.ToString();
+			values[2].text = playerStats[2].value.ToString();
+			values[3].text = playerStats[3].value.ToString();
+			values[4].text = playerStats[4].value.ToString();
+			values[5].text = playerStats[5].value.ToString();
+			values[6].text = playerStats[6].value + "%";
+			values[7].text = playerStats[7].value + "%";
+			values[8].text = playerStats[8].value + "%";
+		}
+
+		if (!showChanges)
+			return;
 
 		if (selectedItem.reference != null) {
 			currentItem = selectedItem.reference;
 			itemName.text = currentItem.entryName;
+			itemType.text = currentItem.type.ToString();
 			itemIcon.sprite = currentItem.icon;
 			itemIcon.color = currentItem.tintColor;
 			itemIcon.enabled = true;
@@ -83,6 +94,7 @@ public class SelectedItemUI : MonoBehaviour {
 		}
 		else {
 			itemName.text = "";
+			itemType.text = "";
 			changes[0].text = "";
 			changes[1].text = "";
 			changes[2].text = "";

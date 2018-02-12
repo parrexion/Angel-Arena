@@ -29,6 +29,7 @@ public class ItemGenerator : MonoBehaviour {
 
 	[Header("Item Rarity")]
 	public RandomRarityListVariable[] rarityList;
+	public RandomRarityListVariable levelRarityList;
 
 	[Header("Base Item")]
 	public RandomTypeListVariable[] typeList;
@@ -49,44 +50,32 @@ public class ItemGenerator : MonoBehaviour {
 	public RandomModListVariable[] modConsumable;
 
 
-
-	public void Generate() {
-		ItemEntry testItem = selectedItem.reference;
-		if (testItem == null)
-			return;
-		
+	public ItemEntry GenerateBattle(BattleEntry.Difficulty difficulty) {
 		int rarity = (int)rarityList[(int)difficulty].GetRandomItem();
+		return Generate(rarity, false);
+	}
+
+	public ItemEntry GenerateLevel(int level) {
+		int chance = 100 + level * 10;
+
+		int rarity = Random.Range(0,chance) / 100;
+		return Generate(rarity, true);
+	}
+
+	ItemEntry Generate(int rarity, bool bought) {
+		ItemEntry item = (ItemEntry)ScriptableObject.CreateInstance("ItemEntry");
 		ItemEntry.ItemType type = typeList[rarity].GetRandomItem();
 
-		testItem.ResetValues();
-		testItem.type = type;
-		testItem.rarity = (ItemEntry.Rarity)rarity;
-		testItem.tintColor = Random.ColorHSV(0,1,0.5f,1,0,1,1,1);
+		item.ResetValues();
+		item.bought = bought;
+		item.isRecipe = true;
+		item.entryName = type.ToString();
+		item.type = type;
+		item.icon = baseImages[5];
+		item.rarity = (ItemEntry.Rarity)rarity;
+		item.tintColor = Random.ColorHSV(0,1,0.5f,1,0,1,1,1);
 
-		switch (type)
-		{
-			case ItemEntry.ItemType.AMULET:
-				testItem.entryName = "AMULET";
-				testItem.icon = baseImages[3];
-				break;
-			case ItemEntry.ItemType.ARMOR:
-				testItem.entryName = "ARMOR";
-				testItem.icon = baseImages[1];
-				break;
-			case ItemEntry.ItemType.CONSUMABLE:
-				testItem.entryName = "CONSUMABLE";
-				testItem.icon = baseImages[4];
-				break;
-			case ItemEntry.ItemType.HELM:
-				testItem.entryName = "HELM";
-				testItem.icon = baseImages[2];
-				break;
-			case ItemEntry.ItemType.WEAPON:
-				testItem.entryName = "WEAPON";
-				testItem.icon = baseImages[0];
-				break;
-		}
-		ColorByRarity(testItem);
+		ColorByRarity(item);
 
 		int attempts = 1;
 		while (attempts > 0) {
@@ -95,49 +84,55 @@ public class ItemGenerator : MonoBehaviour {
 			{
 				case ItemEntry.ItemType.AMULET:
 					selectedMod = modAmulet[rarity].GetRandomItem();
-					testItem.moneyValue = 30;
+					item.moneyValue = 30;
 					break;
 				case ItemEntry.ItemType.ARMOR:
 					selectedMod = modArmor[rarity].GetRandomItem();
-					testItem.moneyValue = 20;
+					item.moneyValue = 20;
 					break;
 				case ItemEntry.ItemType.CONSUMABLE:
-					// selectedMod = modConsumable[rarity].GetRandomItem();
-					selectedMod = modArmor[2].list[3].modifier;
-					testItem.moneyValue = 0;
+					selectedMod = modConsumable[rarity].GetRandomItem();
+					item.moneyValue = 0;
 					break;
 				case ItemEntry.ItemType.HELM:
 					selectedMod = modHelm[rarity].GetRandomItem();
-					testItem.moneyValue = 10;
+					item.moneyValue = 10;
 					break;
 				case ItemEntry.ItemType.WEAPON:
 					selectedMod = modWeapon[rarity].GetRandomItem();
-					testItem.moneyValue = 10;
+					item.moneyValue = 10;
 					break;
 			}
 			
-
 			if (selectedMod == null){
 				Debug.Log("Lucky you!");
 				attempts++;
 				continue;
 			}
 
-			testItem.moneyValue += selectedMod.cost;
-			testItem.healthMod += selectedMod.health;
-			testItem.manaMod += selectedMod.mana;
-			testItem.damageMod += selectedMod.damage;
-			testItem.armorMod += selectedMod.armor;
-			testItem.healthRegMod += selectedMod.healthReg;
-			testItem.manaRegMod += selectedMod.manaReg;
-			testItem.magicResMod += selectedMod.magicRes;
-			testItem.critMod += selectedMod.crit;
-			testItem.lifestealMod += selectedMod.lifesteal;
+			item.moneyValue += selectedMod.cost;
+			item.healthMod += selectedMod.health;
+			item.manaMod += selectedMod.mana;
+			item.damageMod += selectedMod.damage;
+			item.armorMod += selectedMod.armor;
+			item.healthRegMod += selectedMod.healthReg;
+			item.manaRegMod += selectedMod.manaReg;
+			item.magicResMod += selectedMod.magicRes;
+			item.critMod += selectedMod.crit;
+			item.lifestealMod += selectedMod.lifesteal;
 
 			attempts--;
 		}
+
+		Debug.Log("Generated a recipe");
+
+		return item;
 	}
 
+	/// <summary>
+	/// Colors the item name according to rarity.
+	/// </summary>
+	/// <param name="item"></param>
 	void ColorByRarity(ItemEntry item) {
 		switch (item.rarity)
 		{
@@ -150,6 +145,39 @@ public class ItemGenerator : MonoBehaviour {
 		case ItemEntry.Rarity.PURPLE:
 			item.entryName = "<color=#F91DF3FF>" + item.entryName + "</color>";
 			break;
+		}
+	}
+
+	/// <summary>
+	/// Takes an item which is a recipe and changes it into the corresponding item.
+	/// </summary>
+	public void CreateFromRecipe() {
+
+		ItemEntry item = selectedItem.reference;
+		if (item == null || !item.isRecipe)
+			return;
+
+		item.isRecipe = false;
+		item.bought = false;
+		ItemEntry.ItemType type = item.type;
+
+		switch (type)
+		{
+			case ItemEntry.ItemType.AMULET:
+				item.icon = baseImages[3];
+				break;
+			case ItemEntry.ItemType.ARMOR:
+				item.icon = baseImages[1];
+				break;
+			case ItemEntry.ItemType.CONSUMABLE:
+				item.icon = baseImages[4];
+				break;
+			case ItemEntry.ItemType.HELM:
+				item.icon = baseImages[2];
+				break;
+			case ItemEntry.ItemType.WEAPON:
+				item.icon = baseImages[0];
+				break;
 		}
 	}
 }

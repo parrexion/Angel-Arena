@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler {
+public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {//, IPointerDownHandler {
 
 	public static GameObject itemBeingDragged;
 
@@ -58,12 +58,12 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
 	#endregion
 
-	#region IPointerDownHandler implementation
+	// #region IPointerDownHandler implementation
 
-	public void OnPointerDown(PointerEventData eventData) {
-		if (slot.slotID.type != ItemEntry.ItemType.DESTROY)
-			selectedItem.reference = slot.item;
-	}
+	// public void OnPointerDown(PointerEventData eventData) {
+	// 	if (slot.slotID.type != ItemEntry.ItemType.DESTROY)
+	// 		selectedItem.reference = slot.item;
+	// }
 
-	#endregion
+	// #endregion
 }

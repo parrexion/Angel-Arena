@@ -6,21 +6,22 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// Handler for the inventory slots which handles when items are placed into the inventory slot.
 /// </summary>
-public class SlotHandler : MonoBehaviour, IDropHandler {
+public class SlotHandler : MonoBehaviour, IDropHandler, IPointerDownHandler {
 
-	/// <summary>
-	/// Get the child object representing the item in the slot.
-	/// </summary>
-	public GameObject item {
-		get {
-			if (transform.childCount > 0) {
-				return transform.GetChild(0).gameObject;
-			}
-			return null;
-		}
-	}
+	// /// <summary>
+	// /// Get the child object representing the item in the slot.
+	// /// </summary>
+	// public GameObject item {
+	// 	get {
+	// 		if (transform.childCount > 0) {
+	// 			return transform.GetChild(0).gameObject;
+	// 		}
+	// 		return null;
+	// 	}
+	// }
 
 	public ItemEntryReference selectedItem;
+	public IntVariable selectedItemID;
 	public InventoryHandler invContainer;
 
 	private DragHandler dragHandler;
@@ -48,5 +49,15 @@ public class SlotHandler : MonoBehaviour, IDropHandler {
 		invContainer.Swap(start_id,slot.slotID);
 	}
 
-	#endregion
+    #endregion
+
+	#region IPointerDownHandler implementation
+
+    public void OnPointerDown(PointerEventData eventData) {
+		selectedItem.reference = slot.item;
+		if (selectedItem.reference != null)
+			selectedItemID.value = slot.slotID.id;
+	}
+
+    #endregion
 }

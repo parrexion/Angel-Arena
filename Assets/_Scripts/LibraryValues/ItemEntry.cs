@@ -13,6 +13,8 @@ public class ItemEntry : ScrObjLibraryEntry {
 	public Sprite icon = null;
 	public Color tintColor = Color.white;
 	public int moneyValue = 0;
+	public bool isRecipe = false;
+	public bool bought = false;
 	
 
 	public int healthMod;
@@ -39,6 +41,7 @@ public class ItemEntry : ScrObjLibraryEntry {
 		icon = null;
 		tintColor = Color.white;
 		moneyValue = 0;
+		bought = false;
 		
 		healthMod = 0;
 		manaMod = 0;
@@ -63,5 +66,6 @@ public class ItemEntry : ScrObjLibraryEntry {
 		icon = item.icon;
 		tintColor = item.tintColor;
 		moneyValue = item.moneyValue;
+		bought = item.bought;
 	}
 }

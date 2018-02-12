@@ -27,6 +27,7 @@ public class InventoryHandler : MonoBehaviour {
 			if (bagItems.values[i] == null) {
 				Debug.Log("Placed Item at pos " + i);
 				bagItems.values[i] = item;
+				itemsChanged.Invoke();
 				return true;
 			}
 		}
@@ -44,11 +45,21 @@ public class InventoryHandler : MonoBehaviour {
 		for (int i = 0; i < equippedItems.values.Length; i++) {
 			if (equippedItems.values[i] == null) {
 				equippedItems.values[i] = item;
+				itemsChanged.Invoke();
 				return true;
 			}
 		}
 
 		Debug.Log("Not enough room.");
+		return false;
+	}
+
+	public bool FreeBagSlot() {
+		for (int i = 0; i < bagItems.values.Length; i++) {
+			if (bagItems.values[i] == null) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -87,7 +98,7 @@ public class InventoryHandler : MonoBehaviour {
 	/// Equipped items use negative indexing starting at -1
 	/// </summary>
 	/// <param name="index"></param>
-	private void Remove(int index){
+	public void Remove(int index){
 		if (index < 0) {
 			index = -(index+1);
 			equippedItems.values[index] = null;
@@ -95,6 +106,7 @@ public class InventoryHandler : MonoBehaviour {
 		else {
 			bagItems.values[index] = null;
 		}
+		itemsChanged.Invoke();
 	}
 
 	/// <summary>
