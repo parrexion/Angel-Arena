@@ -14,7 +14,7 @@ public class SpellClickHandler : MonoBehaviour, IPointerDownHandler {
 
 	public IntVariable playerLevel;
 	public BoolVariable levelupMode;
-	public UnityEvent levelupModeToggleEvent;
+	public UnityEvent playerLevelupEvent;
 
 
 	void Start() {
@@ -24,7 +24,9 @@ public class SpellClickHandler : MonoBehaviour, IPointerDownHandler {
 	}
 
 	public void CalculateLevelups() {
-		outline.enabled = levelupMode.value && spell.reference.CanLevelup(playerLevel.value, spell.level);
+		int level = playerLevel.value + 1; 
+		outline.enabled = levelupMode.value && spell.reference.CanLevelup(level, spell.level);
+		icon.color = (spell.level > 0) ? Color.white : new Color(0.5f, 0.5f, 0.5f, 0.65f);
 	}
 
 	#region IPointerDownHandler implementation
@@ -35,7 +37,7 @@ public class SpellClickHandler : MonoBehaviour, IPointerDownHandler {
 			levelupMode.value = false;
 			spell.level++;
 			selectedItem.level = spell.level;
-			levelupModeToggleEvent.Invoke();
+			playerLevelupEvent.Invoke();
 		}
 		else {
 			selectedItem.reference = spell.reference;

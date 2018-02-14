@@ -13,8 +13,6 @@ public class SimpleStatsUI : MonoBehaviour {
 
 	//Player stats
 	public IntVariable playerLevel;
-	public IntVariable playerMaxHP;
-	public IntVariable playerCurrentHP;
 	public IntVariable playerExp;
 	public IntVariable playerMoney;
 
@@ -45,8 +43,7 @@ public class SimpleStatsUI : MonoBehaviour {
 	/// </summary>
 	void UpdateValues() {
 		values[0].text = playerLevel.value.ToString();
-		values[1].text = playerCurrentHP.value.ToString() + " / " + playerMaxHP.value.ToString();
-		values[2].text = playerExp.value.ToString();
-		values[3].text = playerMoney.value.ToString();
+		values[1].text = playerExp.value.ToString();
+		values[2].text = playerMoney.value.ToString();
 	}
 }

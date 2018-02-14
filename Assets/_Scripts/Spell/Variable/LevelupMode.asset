@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7cb5cf7410c37a418f8640947e86794, type: 3}
   m_Name: LevelupMode
   m_EditorClassIdentifier: 
-  value: 0
+  value: 1

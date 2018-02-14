@@ -17,11 +17,8 @@ public class SelectedSpellUI : MonoBehaviour {
 	public Text levelText;
 	public Text descriptionText;
 
-	[Header("Player level")]
-	public Text playerLevelText;
-	public IntVariable playerLevel;
-
 	[Header("Leveling stuff")]
+	public IntVariable playerLevel;
 	public Button levelupButton;
 	public BoolVariable levelupMode;
 
@@ -32,7 +29,6 @@ public class SelectedSpellUI : MonoBehaviour {
 	}
 
 	void Update () {
-		//Update values
 		UpdateValues();
 	}
 
@@ -40,8 +36,6 @@ public class SelectedSpellUI : MonoBehaviour {
 	/// Updates the information text of the currently selected item.
 	/// </summary>
 	void UpdateValues(){
-
-		playerLevelText.text = "Level: " + playerLevel.value;
 
 		if (selectedSpell.reference != null) {
 			currentSpell = selectedSpell.reference;

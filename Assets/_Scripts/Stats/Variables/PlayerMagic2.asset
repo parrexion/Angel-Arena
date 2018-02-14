@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: PlayerMagic2
   m_EditorClassIdentifier: 
   reference: {fileID: 11400000, guid: 78b15b0743e9e6d4d98c411c9bb59ce0, type: 2}
-  level: 1
+  level: 0
