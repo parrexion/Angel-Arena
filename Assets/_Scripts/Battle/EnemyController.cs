@@ -157,6 +157,7 @@ public class EnemyController : MonoBehaviour {
 		Debug.Log("Enemy " + index + " died!");
 		enemyTransforms[index].gameObject.SetActive(false);
 		targetButtons[index].gameObject.SetActive(false);
+		player.statsController.ManaKillGained();
 	}
 
 	public bool CheckWin() {

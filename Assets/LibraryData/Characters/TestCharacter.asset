@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31406bbfb829954f93dd202bbc7643e, type: 3}
   m_Name: TestCharacter
   m_EditorClassIdentifier: 
-  characterName: Test Character
+  uuid: test1
+  entryName: Test Character 1
   icon: {fileID: 21300000, guid: 0ce3fc7c39046b441a597dbe2546879f, type: 3}
   color: {r: 0.18269892, g: 0.64705884, b: 0.06660899, a: 1}
   description: Green test character

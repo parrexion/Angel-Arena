@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class TownController : MonoBehaviour {
@@ -11,6 +12,12 @@ public class TownController : MonoBehaviour {
 	public string shopName = "Shop";
 	public string forgeName = "Forge";
 
+	public UnityEvent saveGameEvent;
+
+
+	private void Start() {
+		saveGameEvent.Invoke();
+	}
 
 	public void AdventureButton() {
 		SceneManager.LoadScene(adventureName);

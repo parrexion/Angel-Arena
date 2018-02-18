@@ -76,9 +76,9 @@ public class SelectedItemUI : MonoBehaviour {
 
 		if (selectedItem.reference != null) {
 			currentItem = selectedItem.reference;
-			itemName.text = currentItem.entryName;
+			itemName.text = currentItem.itemName;
 			itemType.text = currentItem.type.ToString();
-			itemIcon.sprite = currentItem.icon;
+			itemIcon.sprite = currentItem.icon.value;
 			itemIcon.color = currentItem.tintColor;
 			itemIcon.enabled = true;
 			

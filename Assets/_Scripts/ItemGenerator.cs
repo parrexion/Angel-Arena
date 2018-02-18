@@ -24,7 +24,7 @@ public class ModProbabiltyTuple {
 public class ItemGenerator : MonoBehaviour {
 
 	public ItemEntryReference selectedItem;
-	public Sprite[] baseImages;
+	public SpriteEntry[] baseImages;
 	public BattleEntry.Difficulty difficulty;
 
 	[Header("Item Rarity")]
@@ -69,7 +69,7 @@ public class ItemGenerator : MonoBehaviour {
 		item.ResetValues();
 		item.bought = bought;
 		item.isRecipe = true;
-		item.entryName = type.ToString();
+		item.itemName = type.ToString();
 		item.type = type;
 		item.icon = baseImages[5];
 		item.rarity = (ItemEntry.Rarity)rarity;
@@ -137,13 +137,13 @@ public class ItemGenerator : MonoBehaviour {
 		switch (item.rarity)
 		{
 		case ItemEntry.Rarity.GREEN:
-			item.entryName = "<color=#3BD248FF>" + item.entryName + "</color>";
+			item.itemName = "<color=#3BD248FF>" + item.itemName + "</color>";
 			break;
 		case ItemEntry.Rarity.BLUE:
-			item.entryName = "<color=#2F5DE5FF>" + item.entryName + "</color>";
+			item.itemName = "<color=#2F5DE5FF>" + item.itemName + "</color>";
 			break;
 		case ItemEntry.Rarity.PURPLE:
-			item.entryName = "<color=#F91DF3FF>" + item.entryName + "</color>";
+			item.itemName = "<color=#F91DF3FF>" + item.itemName + "</color>";
 			break;
 		}
 	}

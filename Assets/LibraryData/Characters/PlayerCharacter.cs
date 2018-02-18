@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class PlayerCharacter : ScriptableObject {
+public class PlayerCharacter : ScrObjLibraryEntry {
 
-	public string characterName;
 	public Sprite icon;
 	public Color color = Color.black;
 	public string description;

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0b87fbc5cfe9d4aba7d501679c3096, type: 3}
+  m_Name: TypeHelm
+  m_EditorClassIdentifier: 
+  uuid: typeHelm
+  entryName: Item type helm
+  value: {fileID: 21300000, guid: b8190cf1c6618e34396bd21d34f685a9, type: 3}

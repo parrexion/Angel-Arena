@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class SimpleStatsUI : MonoBehaviour {
 
 	public Transform[] statsTextList;
-	//public Transform[] modifierTextList;
 
 	//Player stats
 	public IntVariable playerLevel;

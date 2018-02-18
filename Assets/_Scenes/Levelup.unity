@@ -469,7 +469,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: RETURN
+  m_Text: TOWN
 --- !u!222 &99527842
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -778,8 +778,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 414689210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 274, y: 154, z: 0}
-  m_LocalScale: {x: 0.3425, y: 0.3425, z: 0.3425}
+  m_LocalPosition: {x: 319, y: 179.5, z: 0}
+  m_LocalScale: {x: 0.39875, y: 0.39875, z: 0.39875}
   m_Children:
   - {fileID: 194427211}
   m_Father: {fileID: 0}
@@ -1014,7 +1014,7 @@ GameObject:
   - component: {fileID: 742082876}
   - component: {fileID: 742082875}
   m_Layer: 5
-  m_Name: ReturnButton
+  m_Name: TownButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1736,8 +1736,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1546442073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 274, y: 154, z: 0}
-  m_LocalScale: {x: 0.3425, y: 0.3425, z: 0.3425}
+  m_LocalPosition: {x: 319, y: 179.5, z: 0}
+  m_LocalScale: {x: 0.39875, y: 0.39875, z: 0.39875}
   m_Children:
   - {fileID: 2047430156}
   - {fileID: 1645960680}
@@ -1904,8 +1904,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1619575436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 274, y: 154, z: 0}
-  m_LocalScale: {x: 0.3425, y: 0.3425, z: 0.3425}
+  m_LocalPosition: {x: 319, y: 179.5, z: 0}
+  m_LocalScale: {x: 0.39875, y: 0.39875, z: 0.39875}
   m_Children:
   - {fileID: 1960468120}
   - {fileID: 113968400}
@@ -2292,7 +2292,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1917193874}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -100, y: 99.63504, z: 0}
+  m_LocalPosition: {x: -100, y: 100.15674, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1546442077}

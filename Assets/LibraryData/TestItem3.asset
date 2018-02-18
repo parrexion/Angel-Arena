@@ -9,18 +9,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2efe29377e4beae4093bed13ef1c881d, type: 3}
-  m_Name: TestItem 2
+  m_Name: TestItem3
   m_EditorClassIdentifier: 
-  uuid: 
-  entryName: 
-  type: 4
-  rarity: 0
-  icon: {fileID: 21300000, guid: 531a8ec1dffc9dc4f9b6a5893a692125, type: 3}
-  tintColor: {r: 0.18520348, g: 0.4738879, b: 0.68797857, a: 1}
-  moneyValue: 225
+  itemName: Test 3
+  type: 2
+  rarity: 2
+  icon: {fileID: 11400000, guid: cfa6a1bdbb7b56f4bafae8b6572ec8c0, type: 2}
+  tintColor: {r: 0.36634946, g: 0.564864, b: 0.8897059, a: 1}
+  moneyValue: 50
+  isRecipe: 0
+  bought: 0
   healthMod: 10
   manaMod: 0
-  damageMod: 5
+  damageMod: 0
   armorMod: 0
   healthRegMod: 0
   manaRegMod: 0

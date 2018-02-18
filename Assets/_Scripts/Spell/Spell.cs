@@ -18,6 +18,8 @@ public class Spell : ScriptableObject {
 	public bool ultimate;
 	[SerializeField]
 	public SpellType spellType;
+	[SerializeField]
+	public ItemModifier[] buffModifiers;
 
 	[Header("Base values")]
 	public int damage;

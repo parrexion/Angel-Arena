@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerActionController : MonoBehaviour {
 
@@ -29,6 +30,7 @@ public class PlayerActionController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		statsController.CalculateSpellPassives(true);
 		statsController.currentHP.value = statsController.maxHP.value;
 		statsController.currentMana.value = statsController.maxMana.value;
 		currentAttackType = AttackType.NONE;
@@ -52,7 +54,7 @@ public class PlayerActionController : MonoBehaviour {
 	public void StartTurn() {
 		actionCanvas.enabled = true;
 		if (enemies.CheckWin()) {
-			currentBattleState.value = 9;
+			currentBattleState.value = BattleStateMachine.VICTORY_INT;
 			nextPhaseEvent.Invoke();
 			return;
 		}
@@ -257,9 +259,22 @@ public class PlayerActionController : MonoBehaviour {
 	}
 
 	/// <summary>
+	/// Called when an enemy is killed and exp are rewarded.
+	/// </summary>
+	/// <param name="exp"></param>
+	public void EnemyKilled(int exp) {
+		statsController.ManaKillGained();
+		statsController.totalExp.value += exp;
+	}
+
+	/// <summary>
 	/// Called when the player's health reaches 0.
 	/// </summary>
 	void PlayerDeath() {
 		Debug.Log("### PLAYER DIED ###");
+		currentBattleState.value = BattleStateMachine.DEFEAT_INT;
+		nextPhaseEvent.Invoke();
 	}
+
+	
 }

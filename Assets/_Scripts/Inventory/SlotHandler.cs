@@ -8,18 +8,6 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class SlotHandler : MonoBehaviour, IDropHandler, IPointerDownHandler {
 
-	// /// <summary>
-	// /// Get the child object representing the item in the slot.
-	// /// </summary>
-	// public GameObject item {
-	// 	get {
-	// 		if (transform.childCount > 0) {
-	// 			return transform.GetChild(0).gameObject;
-	// 		}
-	// 		return null;
-	// 	}
-	// }
-
 	public ItemEntryReference selectedItem;
 	public IntVariable selectedItemID;
 	public InventoryHandler invContainer;
@@ -55,8 +43,11 @@ public class SlotHandler : MonoBehaviour, IDropHandler, IPointerDownHandler {
 
     public void OnPointerDown(PointerEventData eventData) {
 		selectedItem.reference = slot.item;
-		if (selectedItem.reference != null)
+		if (selectedItem.reference != null){
+			Debug.Log("Select " + selectedItemID.value);
+			Debug.Log("Slot" + slot.slotID.id);
 			selectedItemID.value = slot.slotID.id;
+		}
 	}
 
     #endregion

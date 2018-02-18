@@ -8,11 +8,14 @@ using UnityEngine.UI;
 public class BattleStateMachine : MonoBehaviour {
 
 	public enum BattleState { START, PLAYER, ENEMY, ENDROUND, LOSE, WIN }
+	public const int VICTORY_INT = 9;
+	public const int DEFEAT_INT = 10;
 
 	public float delay = 1f;
 
 	public IntVariable currentBattleState;
 	public PlayerMagicController magicController;
+	public PlayerStatsController statsController;
 	public Canvas playerActions;
 	public Canvas victoryCanvas;
 	public VictoryCalculator victoryCalc;
@@ -56,8 +59,11 @@ public class BattleStateMachine : MonoBehaviour {
 			case 4:
 				StartCoroutine(EnemyTurn());
 				break;
-			case 9:
+			case VICTORY_INT:
 				StartCoroutine(Victory());
+				break;
+			case DEFEAT_INT:
+				StartCoroutine(Defeat());
 				break;
 		}
 	}
@@ -65,6 +71,7 @@ public class BattleStateMachine : MonoBehaviour {
 	IEnumerator Setup() {
 		currentBattleState.value = 1;
 		victoryCanvas.enabled = false;
+		statsController.CalculateSpellPassives(true);
 
 		TriggerState();
 		yield break;
@@ -98,10 +105,18 @@ public class BattleStateMachine : MonoBehaviour {
 
 	IEnumerator Victory() {
 		bigText.text = "VICTORY";
+		statsController.CalculateSpellPassives(false);
 		yield return new WaitForSeconds(delay);
 		bigText.text = "";
 		victoryCalc.CalculateWinnings();
 		victoryCanvas.enabled = true;
 		yield break;
+	}
+
+	IEnumerator Defeat() {
+		bigText.text = "YOU DIED";
+		statsController.CalculateSpellPassives(false);
+		yield return new WaitForSeconds(4f);
+		SceneManager.LoadScene("Town");
 	}
 }
