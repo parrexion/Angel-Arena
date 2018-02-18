@@ -20,6 +20,7 @@ MonoBehaviour:
   magicResist: 0
   dodge: 0
   crit: 0
+  maxStun: 1
   spell: {fileID: 11400000, guid: 9cea7c2aad67a784c847083fa42ed91b, type: 2}
   exp: 20
   money: 200
