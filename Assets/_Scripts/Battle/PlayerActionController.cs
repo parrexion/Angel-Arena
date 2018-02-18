@@ -179,6 +179,10 @@ public class PlayerActionController : MonoBehaviour {
 		Debug.Log("Enemy hurt player for " + realDamage + " damage.");
 		Transform dmg = Instantiate(damageNumber, playerTransform.position, Quaternion.identity);
 		dmg.GetComponent<DamageNumberDisplay>().damage = realDamage;
+
+		if (statsController.currentHP.value <= 0) {
+			PlayerDeath();
+		}
 	}
 
 	/// <summary>

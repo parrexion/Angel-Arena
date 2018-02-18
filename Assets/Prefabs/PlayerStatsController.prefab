@@ -66,6 +66,12 @@ MonoBehaviour:
   magicRes: {fileID: 11400000, guid: 2c6ff54611bba3043a81813412176af4, type: 2}
   crit: {fileID: 11400000, guid: ae194ab4249ddbb4ba9c21f2c7da7a28, type: 2}
   lifesteal: {fileID: 11400000, guid: 9556321ff69aa1c41aee138fba8ba367, type: 2}
+  manaKill: {fileID: 11400000, guid: b0020bb470a4a31418e8cbb2619be4b2, type: 2}
+  spells:
+  - {fileID: 11400000, guid: d0ac76544055a3645a52e0f800d4bb93, type: 2}
+  - {fileID: 11400000, guid: bb8ccc8dcafdf3a4280b7e7df969146a, type: 2}
+  - {fileID: 11400000, guid: 4221419dc0c346847b5640202fcca306, type: 2}
+  - {fileID: 11400000, guid: 9a6d15b51495c0d41af385de65da965a, type: 2}
   equippedItems: {fileID: 11400000, guid: 18898ccea7d039540a1570e3e27e51d2, type: 2}
 --- !u!114 &114491278504222660
 MonoBehaviour:

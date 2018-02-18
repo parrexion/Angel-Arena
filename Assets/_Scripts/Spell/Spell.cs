@@ -16,24 +16,24 @@ public class Spell : ScriptableObject {
 	[Header("Magic type")]
 	public bool useable;
 	public bool ultimate;
-	[SerializeField]
-	public SpellType spellType;
-	[SerializeField]
-	public ItemModifier[] buffModifiers;
+	[SerializeField] public SpellType spellType;
+	[SerializeField] public ItemModifier[] buffModifiers;
 
 	[Header("Base values")]
-	public int damage;
-	public int heal;
-	public int buffValue;
-	public int cooldown;
-	public int manaCost;
+	[SerializeField] int damage;
+	[SerializeField] int heal;
+	[SerializeField] int buffValue;
+	[SerializeField] int cooldown;
+	[SerializeField] int manaCost;
+	[SerializeField] int stuns;
 
 	[Header("Scaling")]
-	public int s_damage;
-	public int s_heal;
-	public int s_buffValue;
-	public int s_cooldown;
-	public int s_manaCost;
+	[SerializeField] int s_damage;
+	[SerializeField] int s_heal;
+	[SerializeField] int s_buffValue;
+	[SerializeField] int s_cooldown;
+	[SerializeField] int s_manaCost;
+	[SerializeField] int s_stuns;
 
 
 	public string generateSpellDescription(DetailMode mode, int level) {
@@ -67,12 +67,14 @@ public class Spell : ScriptableObject {
 		int t_buffValue = buffValue + level * s_buffValue;
 		int t_cooldown = cooldown + level * s_cooldown;
 		int t_manaCost = manaCost + level * s_manaCost;
+		int t_stun = stuns + level * s_stuns;
 
 		fullDesc = fullDesc.Replace("<dmg>", SimpleValueString(t_damage));
 		fullDesc = fullDesc.Replace("<heal>", SimpleValueString(t_heal));
 		fullDesc = fullDesc.Replace("<buff>", SimpleValueString(t_buffValue));
 		fullDesc = fullDesc.Replace("<cd>", SimpleValueString(t_cooldown));
 		fullDesc = fullDesc.Replace("<cost>", SimpleValueString(t_manaCost));
+		fullDesc = fullDesc.Replace("<stun>", SimpleValueString(t_stun));
 		return fullDesc;
 	}
 
@@ -86,12 +88,14 @@ public class Spell : ScriptableObject {
 		int t_buffValue = buffValue + level * s_buffValue;
 		int t_cooldown = cooldown + level * s_cooldown;
 		int t_manaCost = manaCost + level * s_manaCost;
+		int t_stun = stuns + level * s_stuns;
 
 		fullDesc = fullDesc.Replace("<dmg>", LevelupValueString(t_damage, s_damage));
 		fullDesc = fullDesc.Replace("<heal>", LevelupValueString(t_heal, s_heal));
 		fullDesc = fullDesc.Replace("<buff>", LevelupValueString(t_buffValue, s_buffValue));
 		fullDesc = fullDesc.Replace("<cd>", LevelupValueString(t_cooldown, s_cooldown));
 		fullDesc = fullDesc.Replace("<cost>", LevelupValueString(t_manaCost, s_manaCost));
+		fullDesc = fullDesc.Replace("<stun>", LevelupValueString(t_stun, s_stuns));
 		return fullDesc;
 	}
 
@@ -101,6 +105,7 @@ public class Spell : ScriptableObject {
 		fullDesc = fullDesc.Replace("<buff>", DescValueString(buffValue, s_buffValue));
 		fullDesc = fullDesc.Replace("<cd>", DescValueString(cooldown, s_cooldown));
 		fullDesc = fullDesc.Replace("<cost>", DescValueString(manaCost, s_manaCost));
+		fullDesc = fullDesc.Replace("<stun>", DescValueString(stuns, s_stuns));
 		return fullDesc;
 	}
 
@@ -112,12 +117,14 @@ public class Spell : ScriptableObject {
 		int t_buffValue = buffValue + level * s_buffValue;
 		int t_cooldown = cooldown + level * s_cooldown;
 		int t_manaCost = manaCost + level * s_manaCost;
+		int t_stuns = stuns + level * s_stuns;
 
 		fullDesc = fullDesc.Replace("<dmg>", FullValueString(t_damage, damage, s_damage));
 		fullDesc = fullDesc.Replace("<heal>", FullValueString(t_heal, heal, s_heal));
 		fullDesc = fullDesc.Replace("<buff>", FullValueString(t_buffValue, buffValue, s_buffValue));
 		fullDesc = fullDesc.Replace("<cd>", FullValueString(t_cooldown, cooldown, s_cooldown));
 		fullDesc = fullDesc.Replace("<cost>", FullValueString(t_manaCost, manaCost, s_manaCost));
+		fullDesc = fullDesc.Replace("<stun>", FullValueString(t_stuns, stuns, s_stuns));
 		return fullDesc;
 	}
 
@@ -145,4 +152,12 @@ public class Spell : ScriptableObject {
 			return (1 + 2 * spellLevel <= playerLevel);
 		}
 	}
+
+	public int Damage(int level) { return damage + level * s_damage; }
+	public int Heal(int level) { return heal + level * s_heal; }
+	public int BuffValue(int level) { return buffValue + level * s_buffValue; }
+	public int Cooldown(int level) { return cooldown + level * s_cooldown; }
+	public int ManaCost(int level) { return manaCost + level * s_manaCost; }
+	public int Stuns(int level) { return stuns + level * s_stuns; }
+
 }

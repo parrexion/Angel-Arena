@@ -17,6 +17,11 @@ MonoBehaviour:
   useable: 0
   ultimate: 0
   spellType: 4
+  buffModifiers:
+  - {fileID: 11400000, guid: 048dfd5a8157d7c4c864a2d336e61fe5, type: 2}
+  - {fileID: 11400000, guid: e3e5150ab0b749943bb0c45222554337, type: 2}
+  - {fileID: 11400000, guid: d40df87928c6ebc4d822e0b8c627fba8, type: 2}
+  - {fileID: 11400000, guid: d24bd88a4e686ba4184c9f2c20481f52, type: 2}
   damage: 0
   heal: 0
   buffValue: 1

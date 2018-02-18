@@ -17,6 +17,7 @@ public class Enemy : ScriptableObject {
 	public int magicResist;
 	public int dodge;
 	public int crit;
+	public int maxStun = 10;
 
 	[Header("Spell")]
 	public Spell spell;

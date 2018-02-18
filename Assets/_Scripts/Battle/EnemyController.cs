@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour {
 
 	private int currentEnemy;
 	public int[] enemyHealth;
+	public int[] enemyStunned;
 
 	public Text enemyTypeText;
 
@@ -35,6 +36,7 @@ public class EnemyController : MonoBehaviour {
 		currentEnemy = 0;
 		noOfEnemies.value = selectedBattle.reference.GetRandomNumber();
 		enemyHealth = new int[noOfEnemies.value];
+		enemyStunned = new int[noOfEnemies.value];
 		for (int i = 0; i < enemyTransforms.Length; i++) {
 			if (i >= noOfEnemies.value) {
 				enemyTransforms[i].gameObject.SetActive(false);
@@ -43,6 +45,7 @@ public class EnemyController : MonoBehaviour {
 			}
 			enemyTransforms[i].GetChild(0).GetComponent<SpriteRenderer>().sprite = selectedBattle.reference.enemy.color;
 			enemyHealth[i] = selectedBattle.reference.enemy.health;
+			enemyStunned[i] = 0;
 			enemyUIController.UpdateValue(i, 1);
 		}
 	}
@@ -64,7 +67,13 @@ public class EnemyController : MonoBehaviour {
 
 		if (currentEnemy < enemyHealth.Length) {
 			Debug.Log("Enemy attacked the player!");
-			player.TakePhysicalDamage(selectedBattle.reference.enemy.damage);
+			if (enemyStunned[currentEnemy] > 0){
+				enemyStunned[currentEnemy]--;
+				Debug.Log("Stunned. Skipping turn...   " + enemyStunned[currentEnemy]);
+			}
+			else {
+				player.TakePhysicalDamage(selectedBattle.reference.enemy.damage);
+			}
 			currentEnemy++;
 			FindNextEnemy();
 		}
@@ -96,7 +105,7 @@ public class EnemyController : MonoBehaviour {
 		return -1;
 	}
 
-	public void TakeMagicDamage(int enemyIndex, int damage) {
+	public void TakeMagicDamage(int enemyIndex, int damage, int stuns) {
 		Transform dmg;
 
 		int magicRes = Random.Range(0, 100);
@@ -115,6 +124,8 @@ public class EnemyController : MonoBehaviour {
 		dmg = Instantiate(damageNumber, enemyTransforms[enemyIndex].position, Quaternion.identity);
 		dmg.GetComponent<DamageNumberDisplay>().damage = damage;
 		dmg.GetComponent<DamageNumberDisplay>().dodged = false;
+
+		enemyStunned[enemyIndex] = Mathf.Min(selectedBattle.reference.enemy.maxStun, Mathf.Max(stuns, enemyStunned[enemyIndex]));
 
 		if (enemyHealth[enemyIndex] <= 0)
 			Die(enemyIndex);

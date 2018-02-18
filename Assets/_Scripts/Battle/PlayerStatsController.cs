@@ -27,10 +27,12 @@ public class PlayerStatsController : MonoBehaviour {
 	public IntVariable manaKill;
 
 	[Header("Spells")]
-	SpellReference[] spells;
+	public SpellReference[] spells;
 
 	[Header("Inventory")]
 	public InvListVariable equippedItems;
+
+	List<Buff> activeBuffs = new List<Buff>();
 
 
 	public void ResetStats() {
@@ -81,29 +83,59 @@ public class PlayerStatsController : MonoBehaviour {
 		return (res < chance);
 	}
 
-	public void CalculateSpellPassives(bool addBuffs) {
+	public void CalculateSpellPassives(bool addSpells) {
 		for (int i = 0; i < spells.Length; i++) {
 			if (spells[i].reference.spellType != Spell.SpellType.PASSIVE) 
 				continue;
 			int level = spells[i].level -1;
-			if (addBuffs)
-				AddBuff(spells[i].reference.buffModifiers[level]);
+			if (addSpells)
+				AddModifier(spells[i].reference.buffModifiers[level]);
 			else
-				RemoveBuff(spells[i].reference.buffModifiers[level]);
+				RemoveModifier(spells[i].reference.buffModifiers[level]);
 		}
+		if (!addSpells)
+			ResetBuffs();
 	}
 
 	public void ManaKillGained() {
 		currentMana.value = Mathf.Min(maxMana.value, currentMana.value + manaKill.value); 
 	}
 
-	// BUFFS	
+	// BUFFS
 
-	public void AddBuff(ItemModifier mod) {
+	public void AddNewBuff(int duration, ItemModifier modifier) {
+		Buff buff = new Buff();
+		buff.durationLeft = duration;
+		buff.modifier = modifier;
+		activeBuffs.Add(buff);
+		AddModifier(modifier);
+	}
+
+	public void ResetBuffs() {
+		for (int i = 0; i < activeBuffs.Count; i++) {
+			RemoveModifier(activeBuffs[i].modifier);
+		}
+		activeBuffs = new List<Buff>();
+	}
+
+	public void UpdateBuffs() {
+		List<int> removeList = new List<int>();
+		bool stillActive;
+		for (int i = 0; i < activeBuffs.Count; i++) {
+			stillActive = activeBuffs[i].UpdateCooldown();
+			if (!stillActive)
+				removeList.Add(i);
+		}
+		for (int i = removeList.Count-1; i >= 0; i--) {
+			activeBuffs.RemoveAt(removeList[i]);
+		}
+	}
+
+	void AddModifier(ItemModifier mod) {
 		CalculateBuff(mod, 1);
 	}
 
-	public void RemoveBuff(ItemModifier mod) {
+	void RemoveModifier(ItemModifier mod) {
 		CalculateBuff(mod,-1);
 	}
 

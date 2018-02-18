@@ -1309,8 +1309,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 328272529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 274, y: 154, z: 0}
-  m_LocalScale: {x: 0.3425, y: 0.3425, z: 0.3425}
+  m_LocalPosition: {x: 319, y: 179.5, z: 0}
+  m_LocalScale: {x: 0.39875, y: 0.39875, z: 0.39875}
   m_Children:
   - {fileID: 1413893873}
   - {fileID: 1238724390}
@@ -1457,11 +1457,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4763478861640152, guid: 7757a3b1c09094a498dbd9005510031c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 519.04004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4763478861640152, guid: 7757a3b1c09094a498dbd9005510031c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 384
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4763478861640152, guid: 7757a3b1c09094a498dbd9005510031c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1572,8 +1572,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 428420343}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 274, y: 154, z: 0}
-  m_LocalScale: {x: 0.3425, y: 0.3425, z: 0.3425}
+  m_LocalPosition: {x: 319, y: 179.5, z: 0}
+  m_LocalScale: {x: 0.39875, y: 0.39875, z: 0.39875}
   m_Children:
   - {fileID: 91476724}
   - {fileID: 748233010}
@@ -1840,7 +1840,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 575684109}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -449.63504, z: 0}
+  m_LocalPosition: {x: 0, y: -450.15674, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 428420347}
@@ -3232,6 +3232,7 @@ MonoBehaviour:
   - {fileID: 1970612259}
   - {fileID: 1869775101}
   enemyHealth: 
+  enemyStunned: 
   enemyTypeText: {fileID: 91476722}
 --- !u!4 &955273746
 Transform:
@@ -4496,8 +4497,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1375895730}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 274, y: 154, z: 0}
-  m_LocalScale: {x: 0.3425, y: 0.3425, z: 0.3425}
+  m_LocalPosition: {x: 319, y: 179.5, z: 0}
+  m_LocalScale: {x: 0.39875, y: 0.39875, z: 0.39875}
   m_Children:
   - {fileID: 1002986966}
   - {fileID: 1900640768}
@@ -6358,6 +6359,7 @@ MonoBehaviour:
   delay: 0.5
   currentBattleState: {fileID: 11400000, guid: c257557a619fcfd40a454760722285ad, type: 2}
   magicController: {fileID: 169407140}
+  statsController: {fileID: 2094570300}
   playerActions: {fileID: 2098327383}
   victoryCanvas: {fileID: 1375895733}
   victoryCalc: {fileID: 1002986969}
@@ -6952,8 +6954,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2098327380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 274, y: 154, z: 0}
-  m_LocalScale: {x: 0.3425, y: 0.3425, z: 0.3425}
+  m_LocalPosition: {x: 319, y: 179.5, z: 0}
+  m_LocalScale: {x: 0.39875, y: 0.39875, z: 0.39875}
   m_Children:
   - {fileID: 1047157566}
   m_Father: {fileID: 0}

@@ -50,11 +50,11 @@ public class PlayerMagicController : MonoBehaviour {
 	public void UpdateSpells() {
 		for (int i = 0; i < spells.Length; i++) {
 			buttonTexts[i].text = (cooldowns[i] > 0) ? cooldowns[i].ToString() : "";
-			bool interact = spells[i].reference.useable && cooldowns[i] <= 0 && spells[i].reference.manaCost <= playerCurrentMana.value;
+			bool interact = spells[i].reference.useable && cooldowns[i] <= 0 && spells[i].reference.ManaCost(spells[i].level) <= playerCurrentMana.value;
 			spellButtons[i].interactable = interact;
 
 			ColorBlock cb = spellButtons[0].colors;
-        	cb.disabledColor = (spells[i].reference.manaCost <= playerCurrentMana.value) ? Color.white : new Color(0.4f,0.4f,1f,0.75f);
+        	cb.disabledColor = (spells[i].reference.ManaCost(spells[i].level) <= playerCurrentMana.value) ? Color.white : new Color(0.4f,0.4f,1f,0.75f);
 			spellButtons[i].colors = cb;
 		}
 	}
@@ -67,18 +67,19 @@ public class PlayerMagicController : MonoBehaviour {
 	/// <param name="spellIndex"></param>
 	public void UseSpell(int target, int spellIndex) {
 		Debug.Log("Used magic no " + spellIndex + " on the enemy!");
-		cooldowns[spellIndex] = spells[spellIndex].reference.cooldown;
-		playerController.LoseMana(spells[spellIndex].reference.manaCost);
-		switch (spells[spellIndex].reference.spellType)
+		Spell spell = spells[spellIndex].reference;
+		cooldowns[spellIndex] = spell.Cooldown(spells[spellIndex].level);
+		playerController.LoseMana(spell.ManaCost(spells[spellIndex].level));
+		switch (spell.spellType)
 		{
 			case Spell.SpellType.SINGLE:
-				enemyController.TakeMagicDamage(target,spells[spellIndex].reference.damage);
+				enemyController.TakeMagicDamage(target,spell.Damage(spells[spellIndex].level), spell.Stuns(spells[spellIndex].level));
 				break;
 			case Spell.SpellType.HEAL:
-				playerController.HealDamage(spells[spellIndex].reference.heal);
+				playerController.HealDamage(spell.Heal(spells[spellIndex].level));
 				break;
 			case Spell.SpellType.FAMILIAR:
-				playerController.CreateFamiliar(spells[spellIndex].reference.heal);
+				playerController.CreateFamiliar(spell.Heal(spells[spellIndex].level));
 				break;
 		}
 		UpdateSpells();

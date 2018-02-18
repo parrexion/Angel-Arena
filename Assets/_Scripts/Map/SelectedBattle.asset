@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44053e5be17dd074fa6fd74069afa67f, type: 3}
   m_Name: SelectedBattle
   m_EditorClassIdentifier: 
-  reference: {fileID: 11400000, guid: b062bc57626fdf442a54b94cb52b3769, type: 2}
+  reference: {fileID: 11400000, guid: e37f1232e17341d4093a68e5620e2814, type: 2}

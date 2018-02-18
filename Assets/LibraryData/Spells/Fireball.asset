@@ -16,13 +16,17 @@ MonoBehaviour:
   description: Fires a fireball which deals <dmg> damage to a single enemy.
   useable: 1
   ultimate: 0
+  spellType: 0
+  buffModifiers: []
   damage: 10
   heal: 0
   buffValue: 0
   cooldown: 2
   manaCost: 5
+  stuns: 0
   s_damage: 10
   s_heal: 0
   s_buffValue: 0
   s_cooldown: 0
   s_manaCost: 0
+  s_stuns: 1
